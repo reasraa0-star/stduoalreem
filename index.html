@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ستوديو الريم | Reem Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@300;400;500;700;900&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+  :root {
+    --primary: #8B0000;
+    --secondary: #D4AF37;
+    --dark: #1a1a2e;
+    --light: #f8f5f0;
+    --accent: #c9a227;
+    --whatsapp: #25D366;
+  }
+  body { background: var(--light); color: #333; min-height: 100vh; }
+
+  /* ===== شريط التنقل ===== */
+  .navbar {
+    background: linear-gradient(135deg, var(--dark), #16213e);
+    padding: 15px 30px; display: flex; justify-content: space-between;
+    align-items: center; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .nav-logo { color: var(--secondary); font-size: 22px; font-weight: 900; }
+  .nav-logo span { font-family: 'Reem Kufi', sans-serif; }
+  .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .nav-links a {
+    color: white; text-decoration: none; padding: 8px 18px;
+    border-radius: 8px; transition: 0.3s; font-weight: 500;
+  }
+  .nav-links a:hover { background: var(--secondary); color: var(--dark); }
+  .admin-btn {
+    background: transparent; border: 2px solid var(--secondary);
+    color: var(--secondary); padding: 8px 18px; border-radius: 8px;
+    cursor: pointer; font-weight: bold; transition: 0.3s;
+  }
+  .admin-btn:hover { background: var(--secondary); color: var(--dark); }
+
+  /* ===== القسم الرئيسي (Hero) ===== */
+  .hero {
+    background: linear-gradient(135deg, rgba(26,26,46,0.9), rgba(139,0,0,0.85)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="2" fill="%23D4AF37" opacity="0.3"/></svg>');
+    min-height: 85vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; color: white; padding: 40px 20px; position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(212,175,55,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(139,0,0,0.2) 0%, transparent 50%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero-subtitle {
+    color: var(--secondary); font-size: 18px; letter-spacing: 4px;
+    margin-bottom: 20px; font-weight: 500;
+  }
+  .hero-title {
+    font-family: 'Amiri', serif; font-size: clamp(50px, 10vw, 110px);
+    font-weight: 700; margin-bottom: 20px; line-height: 1.2;
+    background: linear-gradient(135deg, #fff, var(--secondary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; text-shadow: 0 0 40px rgba(212,175,55,0.3);
+  }
+  .hero-tagline {
+    font-size: 22px; color: #f0f0f0; margin-bottom: 30px; font-weight: 300;
+  }
+  .hero-divider {
+    width: 100px; height: 3px; background: var(--secondary);
+    margin: 30px auto; position: relative;
+  }
+  .hero-divider::before, .hero-divider::after {
+    content: '✦'; position: absolute; top: -12px; color: var(--secondary);
+    font-size: 20px;
+  }
+  .hero-divider::before { left: -30px; }
+  .hero-divider::after { right: -30px; }
+  .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 14px 35px; border-radius: 50px; font-size: 16px;
+    font-weight: bold; cursor: pointer; border: none; transition: 0.3s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    color: var(--dark);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212,175,55,0.4); }
+  .btn-outline {
+    background: transparent; color: white; border: 2px solid white;
+  }
+  .btn-outline:hover { background: white; color: var(--dark); }
+
+  /* ===== الأقسام ===== */
+  .section { padding: 80px 30px; max-width: 1300px; margin: 0 auto; }
+  .section-title {
+    text-align: center; margin-bottom: 50px;
+  }
+  .section-title h2 {
+    font-family: 'Amiri', serif; font-size: 42px; color: var(--primary);
+    margin-bottom: 10px;
+  }
+  .section-title p { color: #777; font-size: 16px; }
+  .section-title .line {
+    width: 80px; height: 3px; background: var(--secondary);
+    margin: 15px auto;
+  }
+
+  /* ===== عن الإدارة ===== */
+  .about-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; margin-top: 40px;
+  }
+  .about-card {
+    background: white; padding: 40px 30px; border-radius: 20px;
+    text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    transition: 0.3s; border-top: 4px solid var(--secondary);
+  }
+  .about-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+  .about-icon {
+    width: 90px; height: 90px; margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 40px; color: var(--secondary);
+  }
+  .about-card h3 { color: var(--primary); font-size: 22px; margin-bottom: 8px; }
+  .about-card .role { color: var(--secondary); font-weight: bold; margin-bottom: 15px; }
+  .about-card p { color: #666; line-height: 1.8; margin-bottom: 15px; }
+  .about-card .phone {
+    display: inline-block; background: var(--light); padding: 8px 20px;
+    border-radius: 20px; color: var(--primary); font-weight: bold;
+    text-decoration: none; margin: 5px; transition: 0.3s;
+    direction: ltr;
+  }
+  .about-card .phone:hover { background: var(--secondary); color: var(--dark); }
+
+  /* ===== الخدمات ===== */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  .service-card {
+    background: white; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.3s;
+    position: relative;
+  }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+  .service-image {
+    height: 200px; background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 70px; color: white; position: relative;
+  }
+  .service-image.no-image {
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+  }
+  .service-body { padding: 25px; }
+  .service-body h3 { color: var(--primary); font-size: 20px; margin-bottom: 10px; }
+  .service-body p { color: #666; line-height: 1.7; margin-bottom: 15px; font-size: 14px; }
+  .service-price {
+    display: inline-block; background: var(--secondary); color: var(--dark);
+    padding: 6px 18px; border-radius: 20px; font-weight: bold; font-size: 14px;
+  }
+  .admin-controls {
+    position: absolute; top: 10px; left: 10px; display: none; gap: 8px;
+  }
+  .admin-controls.show { display: flex; }
+  .ctrl-btn {
+    width: 35px; height: 35px; border-radius: 50%; border: none;
+    cursor: pointer; color: white; font-weight: bold; transition: 0.3s;
+  }
+  .ctrl-edit { background: #2196F3; }
+  .ctrl-delete { background: #f44336; }
+  .ctrl-btn:hover { transform: scale(1.1); }
+
+  /* ===== معرض الصور ===== */
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+  }
+  .gallery-item {
+    height: 220px; border-radius: 15px; overflow: hidden;
+    position: relative; cursor: pointer; transition: 0.3s;
+    background-size: cover; background-position: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  }
+  .gallery-item:hover { transform: scale(1.03); }
+  .gallery-item .overlay {
+    position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    display: flex; align-items: flex-end; padding: 15px;
+    color: white; font-weight: bold; opacity: 0; transition: 0.3s;
+  }
+  .gallery-item:hover .overlay { opacity: 1; }
+  .gallery-item .admin-controls { top: 10px; left: 10px; }
+  .empty-gallery {
+    grid-column: 1/-1; text-align: center; padding: 60px;
+    background: white; border-radius: 15px; color: #999;
+  }
+
+  /* ===== قسم التواصل ===== */
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; margin-top: 40px;
+  }
+  .contact-card {
+    background: white; padding: 35px 30px; border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08); transition: 0.3s;
+    border-right: 5px solid var(--secondary);
+  }
+  .contact-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+  .contact-card .contact-icon {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; color: var(--secondary); margin-bottom: 20px;
+  }
+  .contact-card h3 { color: var(--primary); font-size: 22px; margin-bottom: 15px; }
+  .contact-card .info { color: #555; line-height: 1.9; margin-bottom: 15px; }
+  .contact-card .info strong { color: var(--dark); }
+  .contact-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 50px; text-decoration: none;
+    font-weight: bold; font-size: 14px; transition: 0.3s;
+    border: none; cursor: pointer;
+  }
+  .btn-call { background: var(--primary); color: white; }
+  .btn-call:hover { background: var(--dark); transform: translateY(-2px); }
+  .btn-wa { background: var(--whatsapp); color: white; }
+  .btn-wa:hover { background: #128C7E; transform: translateY(-2px); }
+
+  /* ===== الخريطة ===== */
+  .map-container {
+    margin-top: 50px; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    background: white;
+  }
+  .map-header {
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+    color: white; padding: 20px 30px;
+    display: flex; align-items: center; gap: 15px;
+  }
+  .map-header .icon { font-size: 30px; }
+  .map-header h3 { font-family: 'Amiri', serif; font-size: 22px; }
+  .map-header p { color: #ddd; font-size: 14px; margin-top: 5px; }
+  .map-frame {
+    width: 100%; height: 400px; border: none; display: block;
+  }
+  .map-actions {
+    padding: 20px 30px; background: var(--light);
+    display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
+  }
+
+  /* ===== زر الواتساب العائم ===== */
+  .whatsapp-float {
+    position: fixed; bottom: 25px; left: 25px; z-index: 999;
+    width: 65px; height: 65px; border-radius: 50%;
+    background: var(--whatsapp); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 35px; text-decoration: none;
+    box-shadow: 0 5px 25px rgba(37,211,102,0.5);
+    animation: pulse 2s infinite;
+    transition: 0.3s;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); }
+  @keyframes pulse {
+    0% { box-shadow: 0 5px 25px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 5px 35px rgba(37,211,102,0.8); }
+    100% { box-shadow: 0 5px 25px rgba(37,211,102,0.5); }
+  }
+  .whatsapp-float::after {
+    content: 'تواصل معنا'; position: absolute; right: 80px;
+    background: var(--dark); color: white; padding: 8px 15px;
+    border-radius: 8px; font-size: 13px; font-weight: bold;
+    white-space: nowrap; opacity: 0; transition: 0.3s;
+    pointer-events: none;
+  }
+  .whatsapp-float:hover::after { opacity: 1; right: 75px; }
+
+  /* ===== لوحة التحكم ===== */
+  .admin-panel {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+    z-index: 1000; overflow-y: auto; padding: 20px;
+  }
+  .admin-panel.show { display: block; }
+  .admin-container {
+    background: white; max-width: 900px; margin: 20px auto;
+    border-radius: 20px; overflow: hidden;
+  }
+  .admin-header {
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+    color: white; padding: 25px 30px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .admin-header h2 { font-family: 'Amiri', serif; font-size: 28px; }
+  .close-btn {
+    background: rgba(255,255,255,0.2); color: white; border: none;
+    width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+    font-size: 20px;
+  }
+  .admin-body { padding: 30px; }
+  .admin-tabs {
+    display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #eee;
+    flex-wrap: wrap;
+  }
+  .admin-tab {
+    padding: 12px 25px; background: transparent; border: none;
+    cursor: pointer; font-weight: bold; color: #666; transition: 0.3s;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+  }
+  .admin-tab.active { color: var(--primary); border-bottom-color: var(--secondary); }
+  .admin-section { display: none; }
+  .admin-section.active { display: block; animation: fadeIn 0.4s; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; margin-bottom: 8px; color: var(--primary);
+    font-weight: bold;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; padding: 12px 15px; border: 2px solid #e0e0e0;
+    border-radius: 10px; font-size: 15px; font-family: inherit;
+    transition: 0.3s;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--secondary);
+  }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .file-upload {
+    border: 2px dashed var(--secondary); padding: 30px; text-align: center;
+    border-radius: 15px; cursor: pointer; transition: 0.3s;
+    background: #fafafa;
+  }
+  .file-upload:hover { background: #f0f0f0; }
+  .file-upload input { display: none; }
+  .file-upload .icon { font-size: 50px; margin-bottom: 10px; }
+  .image-preview {
+    margin-top: 15px; max-width: 100%; max-height: 250px;
+    border-radius: 10px; display: none;
+  }
+  .btn-submit {
+    background: linear-gradient(135deg, var(--primary), var(--dark));
+    color: white; border: none; padding: 14px 35px; border-radius: 50px;
+    font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;
+    width: 100%;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(139,0,0,0.3); }
+
+  /* ===== تسجيل دخول الأدمن ===== */
+  .login-modal {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+    z-index: 1001; align-items: center; justify-content: center; padding: 20px;
+  }
+  .login-modal.show { display: flex; }
+  .login-box {
+    background: white; padding: 40px; border-radius: 20px;
+    width: 100%; max-width: 420px; position: relative;
+  }
+  .login-box h2 {
+    font-family: 'Amiri', serif; color: var(--primary);
+    text-align: center; margin-bottom: 10px; font-size: 30px;
+  }
+  .login-box .sub { text-align: center; color: #888; margin-bottom: 30px; }
+  .login-close {
+    position: absolute; top: 15px; left: 15px; background: #f0f0f0;
+    border: none; width: 35px; height: 35px; border-radius: 50%;
+    cursor: pointer; font-size: 18px;
+  }
+
+  /* ===== الفوتر ===== */
+  .footer {
+    background: linear-gradient(135deg, var(--dark), #16213e);
+    color: white; padding: 50px 30px 20px; text-align: center;
+    margin-top: 60px;
+  }
+  .footer h3 {
+    font-family: 'Amiri', serif; color: var(--secondary);
+    font-size: 32px; margin-bottom: 15px;
+  }
+  .footer .quick-contact {
+    display: flex; justify-content: center; gap: 30px;
+    flex-wrap: wrap; margin: 25px 0;
+  }
+  .footer .quick-contact a {
+    color: white; text-decoration: none; display: flex;
+    align-items: center; gap: 8px; transition: 0.3s;
+  }
+  .footer .quick-contact a:hover { color: var(--secondary); }
+  .footer .address {
+    background: rgba(255,255,255,0.05); padding: 20px;
+    border-radius: 15px; margin: 20px auto; max-width: 600px;
+    border: 1px solid rgba(212,175,55,0.2);
+  }
+  .footer .address p { margin-bottom: 5px; color: #ddd; }
+  .footer .copy {
+    margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
+    color: #888; font-size: 14px;
+  }
+
+  /* ===== الإشعارات ===== */
+  .toast {
+    position: fixed; top: 90px; left: 50%; transform: translateX(-50%);
+    background: var(--primary); color: white; padding: 15px 30px;
+    border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 2000; display: none; font-weight: bold;
+  }
+  .toast.show { display: block; animation: slideDown 0.4s; }
+  @keyframes slideDown { from { transform: translate(-50%, -50px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+
+  /* ===== Admin Badge ===== */
+  .admin-badge {
+    display: none; background: var(--secondary); color: var(--dark);
+    padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 13px;
+  }
+  .admin-badge.show { display: inline-block; }
+
+  @media (max-width: 768px) {
+    .navbar { flex-direction: column; gap: 15px; padding: 15px; }
+    .nav-links { justify-content: center; }
+    .section { padding: 50px 20px; }
+    .section-title h2 { font-size: 32px; }
+    .admin-header { flex-direction: column; gap: 15px; text-align: center; }
+    .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 15px; left: 15px; }
+    .whatsapp-float::after { display: none; }
+    .map-frame { height: 300px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== زر الواتساب العائم ===== -->
+<a href="https://wa.me/963937376942" target="_blank" class="whatsapp-float" title="تواصل عبر واتساب">💬</a>
+
+<!-- ===== شريط التنقل ===== -->
+<nav class="navbar">
+  <div class="nav-logo">🖨️ <span>ستوديو الريم</span></div>
+  <div class="nav-links">
+    <a href="#home">الرئيسية</a>
+    <a href="#about">الإدارة</a>
+    <a href="#services">الخدمات</a>
+    <a href="#gallery">المعرض</a>
+    <a href="#contact">تواصل معنا</a>
+  </div>
+  <div style="display:flex; gap:10px; align-items:center;">
+    <span class="admin-badge" id="adminBadge">👑 وضع الإدارة</span>
+    <button class="admin-btn" id="adminToggle" onclick="handleAdminClick()">🔐 دخول الإدارة</button>
+  </div>
+</nav>
+
+<!-- ===== القسم الرئيسي ===== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p class="hero-subtitle">✦ مرحباً بكم في ✦</p>
+    <h1 class="hero-title">ستوديو الريم</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">للطباعة والتصوير الاحترافي</p>
+    <p style="color:#ddd; margin-bottom:30px; font-size:16px;">
+      حيث تلتقي الجودة بالإبداع • خدمات متكاملة بأيدي محترفة
+    </p>
+    <div class="hero-buttons">
+      <a href="#services" class="btn btn-primary">✨ استعرض خدماتنا</a>
+      <a href="https://wa.me/963937376942" target="_blank" class="btn btn-outline">💬 تواصل واتساب</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== عن الإدارة ===== -->
+<section class="section" id="about">
+  <div class="section-title">
+    <h2>فريق الإدارة</h2>
+    <div class="line"></div>
+    <p>خبرة واحترافية في خدمتكم</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-icon">👔</div>
+      <h3>شادي الرفاعي</h3>
+      <div class="role">المؤسس والمدير العام</div>
+      <p>يقود ستوديو الريم برؤية احترافية وخبرة واسعة في مجال الطباعة والتصوير، ويسعى دائماً لتقديم أفضل الخدمات لعملائنا الكرام.</p>
+      <div>
+        <a href="tel:+963937376942" class="phone">📞 0937376942</a>
+        <a href="https://wa.me/963937376942" target="_blank" class="phone">💬 واتساب</a>
+      </div>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">💼</div>
+      <h3>عمر الرفاعي</h3>
+      <div class="role">مدير الموقع</div>
+      <p>يشرف على إدارة الموقع الإلكتروني والخدمات الرقمية، ويضمن تقديم تجربة مميزة وسلسة لجميع زوارنا وعملائنا.</p>
+      <div>
+        <a href="tel:+963994451442" class="phone">📞 0994451442</a>
+        <a href="https://wa.me/963994451442" target="_blank" class="phone">💬 واتساب</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الخدمات ===== -->
+<section class="section" id="services">
+  <div class="section-title">
+    <h2>خدماتنا المميزة</h2>
+    <div class="line"></div>
+    <p>نقدم لكم باقة متكاملة من الخدمات الاحترافية</p>
+  </div>
+  <div class="services-grid" id="servicesGrid"></div>
+</section>
+
+<!-- ===== معرض الصور ===== -->
+<section class="section" id="gallery">
+  <div class="section-title">
+    <h2>معرض أعمالنا</h2>
+    <div class="line"></div>
+    <p>نماذج من إبداعاتنا وأعمالنا السابقة</p>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- ===== قسم التواصل ===== -->
+<section class="section" id="contact">
+  <div class="section-title">
+    <h2>تواصل معنا</h2>
+    <div class="line"></div>
+    <p>نسعد بخدمتكم والإجابة على جميع استفساراتكم</p>
+  </div>
+  <div class="contact-grid">
+    <!-- شادي الرفاعي -->
+    <div class="contact-card">
+      <div class="contact-icon">👔</div>
+      <h3>شادي الرفاعي</h3>
+      <p style="color:var(--secondary); font-weight:bold; margin-bottom:15px;">المدير العام</p>
+      <div class="info">
+        <strong>📱 رقم التواصل:</strong><br>
+        <span style="direction:ltr; display:inline-block; font-size:18px;">0937376942</span>
+      </div>
+      <div class="contact-actions">
+        <a href="tel:+963937376942" class="contact-btn btn-call">📞 اتصال مباشر</a>
+        <a href="https://wa.me/963937376942" target="_blank" class="contact-btn btn-wa">💬 واتساب</a>
+      </div>
+    </div>
+
+    <!-- عمر الرفاعي -->
+    <div class="contact-card">
+      <div class="contact-icon">💼</div>
+      <h3>عمر الرفاعي</h3>
+      <p style="color:var(--secondary); font-weight:bold; margin-bottom:15px;">مدير الموقع</p>
+      <div class="info">
+        <strong>📱 رقم التواصل:</strong><br>
+        <span style="direction:ltr; display:inline-block; font-size:18px;">0994451442</span>
+      </div>
+      <div class="contact-actions">
+        <a href="tel:+963994451442" class="contact-btn btn-call">📞 اتصال مباشر</a>
+        <a href="https://wa.me/963994451442" target="_blank" class="contact-btn btn-wa">💬 واتساب</a>
+      </div>
+    </div>
+
+    <!-- العنوان -->
+    <div class="contact-card">
+      <div class="contact-icon">📍</div>
+      <h3>موقعنا</h3>
+      <p style="color:var(--secondary); font-weight:bold; margin-bottom:15px;">العنوان</p>
+      <div class="info">
+        <strong>🏪 عنوان المحل:</strong><br>
+        درعا - انخل<br>
+        طريق السوق - بجانب مكتبة الجباوي
+      </div>
+      <div class="contact-actions">
+        <a href="https://maps.google.com/?q=انخل+درعا+سوريا" target="_blank" class="contact-btn btn-call">🗺️ افتح الخريطة</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- الخريطة التفاعلية -->
+  <div class="map-container">
+    <div class="map-header">
+      <div class="icon">🗺️</div>
+      <div>
+        <h3>موقعنا على الخريطة</h3>
+        <p>درعا - انخل - طريق السوق - بجانب مكتبة الجباوي</p>
+      </div>
+    </div>
+    <iframe 
+      class="map-frame"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13284.5!2d36.1!3d32.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzLCsDUxJzAwLjAiTiAzNsKwMDYnMDAuMCJF!5e0!3m2!1sar!2s!4v1"
+      allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <div class="map-actions">
+      <a href="https://maps.google.com/?q=انخل+درعا+سوريا" target="_blank" class="contact-btn btn-call">🗺️ عرض في Google Maps</a>
+      <a href="https://wa.me/963937376942?text=مرحباً،%20أريد%20الاستفسار%20عن%20موقعكم" target="_blank" class="contact-btn btn-wa">💬 اسألنا عن الموقع</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الفوتر ===== -->
+<footer class="footer">
+  <h3>ستوديو الريم</h3>
+  <p style="color:#ddd; font-size:16px;">للطباعة والتصوير الاحترافي</p>
+  
+  <div class="quick-contact">
+    <a href="tel:+963937376942">📞 شادي: 0937376942</a>
+    <a href="tel:+963994451442">📞 عمر: 0994451442</a>
+    <a href="https://wa.me/963937376942" target="_blank">💬 واتساب</a>
+  </div>
+
+  <div class="address">
+    <p style="color:var(--secondary); font-weight:bold; margin-bottom:10px;">📍 موقعنا</p>
+    <p>درعا - انخل - طريق السوق</p>
+    <p>بجانب مكتبة الجباوي</p>
+  </div>
+
+  <p class="copy">© 2026 ستوديو الريم - جميع الحقوق محفوظة | إدارة: شادي الرفاعي</p>
+</footer>
+
+<!-- ===== نافذة تسجيل دخول الأدمن ===== -->
+<div class="login-modal" id="loginModal">
+  <div class="login-box">
+    <button class="login-close" onclick="closeLogin()">✕</button>
+    <h2>🔐 دخول الإدارة</h2>
+    <p class="sub">للأشخاص المخوّلين فقط</p>
+    <form onsubmit="adminLogin(event)">
+      <div class="form-group">
+        <label>اسم المستخدم</label>
+        <input type="text" id="loginUser" required placeholder="أدخل اسم المستخدم">
+      </div>
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <input type="password" id="loginPass" required placeholder="أدخل كلمة المرور">
+      </div>
+      <button type="submit" class="btn-submit">دخول</button>
+    </form>
+    <div style="margin-top:20px; padding:15px; background:#f8f5f0; border-radius:10px; font-size:13px; color:#666;">
+      <strong>حساب المدير:</strong><br>
+      👤 المستخدم: <b>shadi</b> | 🔑 كلمة المرور: <b>reem2026</b>
+    </div>
+  </div>
+</div>
+
+<!-- ===== لوحة التحكم ===== -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-container">
+    <div class="admin-header">
+      <h2>🎛️ لوحة التحكم</h2>
+      <button class="close-btn" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="admin-body">
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchTab('addService', this)">➕ إضافة خدمة</button>
+        <button class="admin-tab" onclick="switchTab('addPhoto', this)">🖼️ إضافة صورة</button>
+        <button class="admin-tab" onclick="switchTab('manage', this)">⚙️ إدارة المحتوى</button>
+      </div>
+
+      <!-- إضافة خدمة -->
+      <div class="admin-section active" id="addService">
+        <h3 style="color:var(--primary); margin-bottom:20px;">إضافة خدمة جديدة</h3>
+        <form onsubmit="addService(event)">
+          <div class="form-group">
+            <label>اسم الخدمة *</label>
+            <input type="text" id="serviceName" required placeholder="مثال: طباعة صور عالية الجودة">
+          </div>
+          <div class="form-group">
+            <label>وصف الخدمة *</label>
+            <textarea id="serviceDesc" required placeholder="اكتب وصفاً جذاباً للخدمة..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>السعر (اختياري)</label>
+            <input type="text" id="servicePrice" placeholder="مثال: 50 ر.س">
+          </div>
+          <div class="form-group">
+            <label>رمز تعبيري (اختياري)</label>
+            <input type="text" id="serviceIcon" placeholder="🖨️ 📷 🎨 ✏️" maxlength="2">
+          </div>
+          <div class="form-group">
+            <label>صورة الخدمة (اختياري)</label>
+            <label class="file-upload" for="serviceImage">
+              <div class="icon">📸</div>
+              <div>اضغط لاختيار صورة</div>
+              <input type="file" id="serviceImage" accept="image/*" onchange="previewImage(event, 'servicePreview')">
+            </label>
+            <img id="servicePreview" class="image-preview">
+          </div>
+          <button type="submit" class="btn-submit">✨ إضافة الخدمة</button>
+        </form>
+      </div>
+
+      <!-- إضافة صورة -->
+      <div class="admin-section" id="addPhoto">
+        <h3 style="color:var(--primary); margin-bottom:20px;">إضافة صورة للمعرض</h3>
+        <form onsubmit="addPhoto(event)">
+          <div class="form-group">
+            <label>عنوان الصورة *</label>
+            <input type="text" id="photoTitle" required placeholder="مثال: تصميم كرت شخصي">
+          </div>
+          <div class="form-group">
+            <label>اختر الصورة *</label>
+            <label class="file-upload" for="galleryImage">
+              <div class="icon">🖼️</div>
+              <div>اضغط لاختيار صورة من جهازك</div>
+              <input type="file" id="galleryImage" accept="image/*" required onchange="previewImage(event, 'photoPreview')">
+            </label>
+            <img id="photoPreview" class="image-preview">
+          </div>
+          <button type="submit" class="btn-submit">📤 رفع الصورة</button>
+        </form>
+      </div>
+
+      <!-- إدارة المحتوى -->
+      <div class="admin-section" id="manage">
+        <h3 style="color:var(--primary); margin-bottom:20px;">إدارة المحتوى</h3>
+        <p style="color:#666; margin-bottom:20px;">يمكنك الآن تعديل أو حذف أي خدمة أو صورة مباشرة من الموقع (ستظهر أزرار التعديل والحذف بجانب كل عنصر).</p>
+        <div style="padding:20px; background:#f8f5f0; border-radius:10px;">
+          <p><strong>📊 إحصائيات:</strong></p>
+          <p style="margin-top:10px;">• عدد الخدمات: <b id="statsServices">0</b></p>
+          <p>• عدد الصور في المعرض: <b id="statsPhotos">0</b></p>
+        </div>
+        <button class="btn-submit" style="margin-top:20px; background:#f44336;" onclick="resetAll()">🗑️ حذف جميع البيانات</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ===== بيانات الأدمن =====
+  const ADMIN = { username: 'shadi', password: 'reem2026', name: 'شادي الرفاعي' };
+  let isAdmin = false;
+
+  // ===== البيانات الافتراضية =====
+  const defaultServices = [
+    { id: 1, name: 'الطباعة الرقمية', desc: 'طباعة عالية الجودة بأحدث الطابعات الرقمية لجميع المقاسات والأوراق', price: 'يبدأ من 1 ر.س', icon: '🖨️', image: '' },
+    { id: 2, name: 'التصوير الاحترافي', desc: 'جلسات تصوير احترافية للمناسبات والبورتريه والمنتجات', price: 'يبدأ من 150 ر.س', icon: '📷', image: '' },
+    { id: 3, name: 'التصميم الجرافيكي', desc: 'تصميم شعارات، كروت شخصية، بوسترات، وهويات تجارية', price: 'يبدأ من 100 ر.س', icon: '🎨', image: '' },
+    { id: 4, name: 'طباعة الاستكرات', desc: 'طباعة استكرات لاصقة بجميع الأشكال والمقاسات', price: 'يبدأ من 50 ر.س', icon: '✨', image: '' },
+    { id: 5, name: 'طباعة البرشور والمجلات', desc: 'طباعة بروشورات ومجلات ودعايات بأعلى جودة', price: 'حسب الكمية', icon: '📰', image: '' },
+    { id: 6, name: 'التصوير بالفيديو', desc: 'تصوير فيديو احترافي للمناسبات والإعلانات', price: 'يبدأ من 300 ر.س', icon: '🎥', image: '' }
+  ];
+
+  // ===== تحميل البيانات =====
+  function loadData() {
+    const services = JSON.parse(localStorage.getItem('reem_services') || 'null') || defaultServices;
+    const photos = JSON.parse(localStorage.getItem('reem_photos') || '[]');
+    return { services, photos };
+  }
+
+  function saveServices(services) {
+    localStorage.setItem('reem_services', JSON.stringify(services));
+  }
+
+  function savePhotos(photos) {
+    localStorage.setItem('reem_photos', JSON.stringify(photos));
+  }
+
+  // ===== عرض الخدمات =====
+  function renderServices() {
+    const { services } = loadData();
+    const grid = document.getElementById('servicesGrid');
+    if (services.length === 0) {
+      grid.innerHTML = '<p style="text-align:center; color:#999; grid-column:1/-1; padding:40px;">لا توجد خدمات حالياً</p>';
+      return;
+    }
+    grid.innerHTML = services.map(s => `
+      <div class="service-card">
+        <div class="admin-controls ${isAdmin ? 'show' : ''}">
+          <button class="ctrl-btn ctrl-edit" onclick="editService(${s.id})" title="تعديل">✏️</button>
+          <button class="ctrl-btn ctrl-delete" onclick="deleteService(${s.id})" title="حذف">🗑️</button>
+        </div>
+        <div class="service-image ${s.image ? '' : 'no-image'}" ${s.image ? `style="background-image:url('${s.image}')"` : ''}>
+          ${s.image ? '' : (s.icon || '🎯')}
+        </div>
+        <div class="service-body">
+          <h3>${s.name}</h3>
+          <p>${s.desc}</p>
+          ${s.price ? `<span class="service-price">${s.price}</span>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ===== عرض المعرض =====
+  function renderGallery() {
+    const { photos } = loadData();
+    const grid = document.getElementById('galleryGrid');
+    if (photos.length === 0) {
+      grid.innerHTML = '<div class="empty-gallery">📸<br><br>سيتم إضافة أعمالنا قريباً</div>';
+      return;
+    }
+    grid.innerHTML = photos.map(p => `
+      <div class="gallery-item" style="background-image:url('${p.image}')">
+        <div class="admin-controls ${isAdmin ? 'show' : ''}">
+          <button class="ctrl-btn ctrl-delete" onclick="deletePhoto(${p.id})" title="حذف">🗑️</button>
+        </div>
+        <div class="overlay">${p.title}</div>
+      </div>
+    `).join('');
+  }
+
+  // ===== تسجيل دخول الأدمن =====
+  function handleAdminClick() {
+    if (isAdmin) {
+      openAdmin();
+    } else {
+      document.getElementById('loginModal').classList.add('show');
+    }
+  }
+
+  function adminLogin(e) {
+    e.preventDefault();
+    const user = document.getElementById('loginUser').value;
+    const pass = document.getElementById('loginPass').value;
+    if (user === ADMIN.username && pass === ADMIN.password) {
+      isAdmin = true;
+      document.getElementById('loginModal').classList.remove('show');
+      document.getElementById('adminBadge').classList.add('show');
+      document.getElementById('adminToggle').innerHTML = '🎛️ لوحة التحكم';
+      document.getElementById('loginUser').value = '';
+      document.getElementById('loginPass').value = '';
+      renderServices();
+      renderGallery();
+      updateStats();
+      showToast('✅ مرحباً ' + ADMIN.name);
+      setTimeout(openAdmin, 500);
+    } else {
+      showToast('❌ بيانات الدخول غير صحيحة');
+    }
+  }
+
+  function closeLogin() {
+    document.getElementById('loginModal').classList.remove('show');
+  }
+
+  function openAdmin() {
+    document.getElementById('adminPanel').classList.add('show');
+    updateStats();
+  }
+
+  function closeAdmin() {
+    document.getElementById('adminPanel').classList.remove('show');
+  }
+
+  // ===== التبديل بين التبويبات =====
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  }
+
+  // ===== معاينة الصور =====
+  function previewImage(e, previewId) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const preview = document.getElementById(previewId);
+      preview.src = event.target.result;
+      preview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ===== إضافة خدمة =====
+  function addService(e) {
+    e.preventDefault();
+    const { services } = loadData();
+    const imageFile = document.getElementById('serviceImage').files[0];
+    const newService = {
+      id: Date.now(),
+      name: document.getElementById('serviceName').value,
+      desc: document.getElementById('serviceDesc').value,
+      price: document.getElementById('servicePrice').value,
+      icon: document.getElementById('serviceIcon').value || '🎯',
+      image: ''
+    };
+
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        newService.image = event.target.result;
+        services.push(newService);
+        saveServices(services);
+        renderServices();
+        updateStats();
+        e.target.reset();
+        document.getElementById('servicePreview').style.display = 'none';
+        showToast('✅ تمت إضافة الخدمة بنجاح');
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      services.push(newService);
+      saveServices(services);
+      renderServices();
+      updateStats();
+      e.target.reset();
+      showToast('✅ تمت إضافة الخدمة بنجاح');
+    }
+  }
+
+  // ===== إضافة صورة =====
+  function addPhoto(e) {
+    e.preventDefault();
+    const { photos } = loadData();
+    const file = document.getElementById('galleryImage').files[0];
+    const title = document.getElementById('photoTitle').value;
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      photos.push({ id: Date.now(), title: title, image: event.target.result });
+      savePhotos(photos);
+      renderGallery();
+      updateStats();
+      e.target.reset();
+      document.getElementById('photoPreview').style.display = 'none';
+      showToast('✅ تم رفع الصورة بنجاح');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ===== تعديل خدمة =====
+  function editService(id) {
+    const { services } = loadData();
+    const service = services.find(s => s.id === id);
+    if (!service) return;
+    const newName = prompt('اسم الخدمة:', service.name);
+    if (newName === null) return;
+    const newDesc = prompt('الوصف:', service.desc);
+    if (newDesc === null) return;
+    const newPrice = prompt('السعر:', service.price || '');
+    if (newPrice === null) return;
+    service.name = newName;
+    service.desc = newDesc;
+    service.price = newPrice;
+    saveServices(services);
+    renderServices();
+    showToast('✅ تم التعديل');
+  }
+
+  // ===== حذف خدمة =====
+  function deleteService(id) {
+    if (!confirm('هل تريد حذف هذه الخدمة؟')) return;
+    let { services } = loadData();
+    services = services.filter(s => s.id !== id);
+    saveServices(services);
+    renderServices();
+    updateStats();
+    showToast('🗑️ تم الحذف');
+  }
+
+  // ===== حذف صورة =====
+  function deletePhoto(id) {
+    if (!confirm('هل تريد حذف هذه الصورة؟')) return;
+    let { photos } = loadData();
+    photos = photos.filter(p => p.id !== id);
+    savePhotos(photos);
+    renderGallery();
+    updateStats();
+    showToast('🗑️ تم الحذف');
+  }
+
+  // ===== إحصائيات =====
+  function updateStats() {
+    const { services, photos } = loadData();
+    document.getElementById('statsServices').textContent = services.length;
+    document.getElementById('statsPhotos').textContent = photos.length;
+  }
+
+  // ===== حذف جميع البيانات =====
+  function resetAll() {
+    if (!confirm('⚠️ سيتم حذف جميع الخدمات والصور! هل أنت متأكد؟')) return;
+    if (!confirm('تأكيد نهائي: سيتم حذف كل شيء!')) return;
+    localStorage.removeItem('reem_services');
+    localStorage.removeItem('reem_photos');
+    renderServices();
+    renderGallery();
+    updateStats();
+    showToast('🗑️ تم حذف جميع البيانات');
+  }
+
+  // ===== الإشعارات =====
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  // ===== التمرير السلس =====
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // ===== التشغيل الأولي =====
+  renderServices();
+  renderGallery();
+</script>
+
+</body>
+</html>
