@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المهندس فادي الرفاعي | للطاقة الشمسية والكهرباء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+  :root {
+    --primary: #1e3a8a;
+    --secondary: #f59e0b;
+    --accent: #fbbf24;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --electric: #3b82f6;
+  }
+  body { background: var(--light); color: #333; min-height: 100vh; }
+
+  /* ===== شريط التنقل ===== */
+  .navbar {
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+    padding: 15px 30px; display: flex; justify-content: space-between;
+    align-items: center; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .nav-logo { 
+    color: var(--secondary); font-size: 20px; font-weight: 900; 
+    text-decoration: none; display: flex; align-items: center; gap: 10px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .nav-links a {
+    color: white; text-decoration: none; padding: 8px 18px;
+    border-radius: 8px; transition: 0.3s; font-weight: 500;
+  }
+  .nav-links a:hover { background: var(--secondary); color: var(--dark); }
+  .admin-btn {
+    background: transparent; border: 2px solid var(--secondary);
+    color: var(--secondary); padding: 8px 18px; border-radius: 8px;
+    cursor: pointer; font-weight: bold; transition: 0.3s;
+  }
+  .admin-btn:hover { background: var(--secondary); color: var(--dark); }
+
+  /* ===== القسم الرئيسي ===== */
+  .hero {
+    background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,58,138,0.9)),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 20px);
+    min-height: 90vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; color: white; padding: 40px 20px; position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '⚡'; position: absolute; font-size: 400px; opacity: 0.03;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 1000px; }
+  .hero-badge {
+    display: inline-block; background: var(--secondary); color: var(--dark);
+    padding: 8px 25px; border-radius: 50px; font-weight: bold;
+    margin-bottom: 20px; font-size: 14px;
+  }
+  .hero-title {
+    font-family: 'Amiri', serif; font-size: clamp(40px, 8vw, 80px);
+    font-weight: 700; margin-bottom: 15px; line-height: 1.2;
+    background: linear-gradient(135deg, #fff, var(--secondary));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-subtitle {
+    font-family: 'Cairo', sans-serif; font-size: 24px; color: var(--accent);
+    margin-bottom: 20px; font-weight: 700;
+  }
+  .hero-slogan {
+    font-size: 20px; color: #cbd5e1; margin-bottom: 30px; font-style: italic;
+    padding: 15px 30px; border: 2px solid var(--secondary);
+    display: inline-block; border-radius: 10px;
+  }
+  .hero-divider {
+    width: 100px; height: 4px; background: linear-gradient(90deg, var(--secondary), var(--accent));
+    margin: 30px auto; border-radius: 2px;
+  }
+  .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 14px 35px; border-radius: 50px; font-size: 16px;
+    font-weight: bold; cursor: pointer; border: none; transition: 0.3s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    color: var(--dark);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(245,158,11,0.4); }
+  .btn-outline {
+    background: transparent; color: white; border: 2px solid white;
+  }
+  .btn-outline:hover { background: white; color: var(--dark); }
+
+  /* ===== الأقسام ===== */
+  .section { padding: 80px 30px; max-width: 1300px; margin: 0 auto; }
+  .section-title {
+    text-align: center; margin-bottom: 50px;
+  }
+  .section-title h2 {
+    font-family: 'Amiri', serif; font-size: 42px; color: var(--primary);
+    margin-bottom: 10px;
+  }
+  .section-title .line {
+    width: 100px; height: 4px; background: linear-gradient(90deg, var(--secondary), var(--accent));
+    margin: 15px auto; border-radius: 2px;
+  }
+  .section-title p { color: #64748b; font-size: 16px; }
+
+  /* ===== عن المهندس ===== */
+  .about-section {
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    padding: 80px 30px;
+  }
+  .about-container { max-width: 1000px; margin: 0 auto; }
+  .about-card {
+    background: white; padding: 50px 40px; border-radius: 20px;
+    text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    border-top: 5px solid var(--secondary);
+  }
+  .about-icon {
+    width: 100px; height: 100px; margin: 0 auto 25px;
+    background: linear-gradient(135deg, var(--primary), var(--electric));
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 50px; color: white;
+  }
+  .about-card h3 { 
+    font-family: 'Cairo', sans-serif; color: var(--primary); 
+    font-size: 28px; margin-bottom: 10px; font-weight: 700;
+  }
+  .about-card .title { 
+    color: var(--secondary); font-weight: bold; margin-bottom: 20px; font-size: 18px;
+  }
+  .about-card p { color: #475569; line-height: 2; margin-bottom: 20px; font-size: 16px; }
+  .about-card .phone {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--electric));
+    color: white; padding: 12px 30px; border-radius: 50px;
+    font-weight: bold; text-decoration: none; margin: 10px;
+    transition: 0.3s; direction: ltr; font-size: 18px;
+  }
+  .about-card .phone:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(30,58,138,0.3); }
+
+  /* ===== الخدمات ===== */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  .service-card {
+    background: white; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.3s;
+    position: relative; border: 2px solid transparent;
+  }
+  .service-card:hover { 
+    transform: translateY(-10px); 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    border-color: var(--secondary);
+  }
+  .service-image {
+    height: 200px; background-size: cover; background-position: center;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 70px; color: white; position: relative;
+  }
+  .service-image.no-image {
+    background: linear-gradient(135deg, var(--primary), var(--electric));
+  }
+  .service-body { padding: 25px; }
+  .service-body h3 { 
+    color: var(--primary); font-size: 20px; margin-bottom: 10px; 
+    font-family: 'Cairo', sans-serif; font-weight: 700;
+  }
+  .service-body p { color: #64748b; line-height: 1.8; margin-bottom: 15px; font-size: 14px; }
+  .service-price {
+    display: inline-block; background: var(--secondary); color: var(--dark);
+    padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 14px;
+  }
+  .admin-controls {
+    position: absolute; top: 10px; left: 10px; display: none; gap: 8px;
+  }
+  .admin-controls.show { display: flex; }
+  .ctrl-btn {
+    width: 35px; height: 35px; border-radius: 50%; border: none;
+    cursor: pointer; color: white; font-weight: bold; transition: 0.3s;
+  }
+  .ctrl-edit { background: #2196F3; }
+  .ctrl-delete { background: #f44336; }
+  .ctrl-btn:hover { transform: scale(1.1); }
+
+  /* ===== معرض الأعمال ===== */
+  .gallery-section { background: var(--dark); color: white; padding: 80px 30px; }
+  .gallery-section .section-title h2 { color: white; }
+  .gallery-section .section-title p { color: #94a3b8; }
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px; max-width: 1300px; margin: 0 auto;
+  }
+  .gallery-item {
+    height: 250px; border-radius: 15px; overflow: hidden;
+    position: relative; cursor: pointer; transition: 0.3s;
+    background-size: cover; background-position: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  }
+  .gallery-item:hover { transform: scale(1.05); }
+  .gallery-item .overlay {
+    position: absolute; inset: 0; background: linear-gradient(to top, rgba(30,58,138,0.9), transparent);
+    display: flex; align-items: flex-end; padding: 20px;
+    color: white; font-weight: bold; opacity: 0; transition: 0.3s;
+  }
+  .gallery-item:hover .overlay { opacity: 1; }
+  .gallery-item .admin-controls { top: 10px; left: 10px; }
+  .empty-gallery {
+    grid-column: 1/-1; text-align: center; padding: 60px;
+    background: rgba(255,255,255,0.05); border-radius: 15px; color: #94a3b8;
+  }
+
+  /* ===== التواصل ===== */
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  .contact-card {
+    background: white; padding: 35px 30px; border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08); transition: 0.3s;
+    border-right: 5px solid var(--secondary); text-align: center;
+  }
+  .contact-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+  .contact-icon {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--electric));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 35px; color: white; margin: 0 auto 20px;
+  }
+  .contact-card h3 { color: var(--primary); font-size: 22px; margin-bottom: 15px; font-family: 'Cairo', sans-serif; }
+  .contact-card .info { color: #475569; line-height: 2; margin-bottom: 20px; }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 25px; border-radius: 50px; text-decoration: none;
+    font-weight: bold; transition: 0.3s; border: none; cursor: pointer;
+    direction: ltr;
+  }
+  .btn-call { background: var(--primary); color: white; }
+  .btn-call:hover { background: var(--electric); transform: translateY(-2px); }
+  .btn-wa { background: #25D366; color: white; }
+  .btn-wa:hover { background: #128C7E; transform: translateY(-2px); }
+
+  /* ===== زر الواتساب العائم ===== */
+  .whatsapp-float {
+    position: fixed; bottom: 25px; left: 25px; z-index: 999;
+    width: 65px; height: 65px; border-radius: 50%;
+    background: #25D366; color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 35px; text-decoration: none;
+    box-shadow: 0 5px 25px rgba(37,211,102,0.5);
+    animation: pulse 2s infinite; transition: 0.3s;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 5px 25px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 5px 35px rgba(37,211,102,0.8); }
+  }
+
+  /* ===== لوحة التحكم ===== */
+  .admin-panel {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+    z-index: 1000; overflow-y: auto; padding: 20px;
+  }
+  .admin-panel.show { display: block; }
+  .admin-container {
+    background: white; max-width: 900px; margin: 20px auto;
+    border-radius: 20px; overflow: hidden;
+  }
+  .admin-header {
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+    color: white; padding: 25px 30px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .admin-header h2 { font-family: 'Cairo', sans-serif; font-size: 24px; }
+  .close-btn {
+    background: rgba(255,255,255,0.2); color: white; border: none;
+    width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+    font-size: 20px;
+  }
+  .admin-body { padding: 30px; }
+  .admin-tabs {
+    display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0;
+    flex-wrap: wrap;
+  }
+  .admin-tab {
+    padding: 12px 25px; background: transparent; border: none;
+    cursor: pointer; font-weight: bold; color: #64748b; transition: 0.3s;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+  }
+  .admin-tab.active { color: var(--primary); border-bottom-color: var(--secondary); }
+  .admin-section { display: none; }
+  .admin-section.active { display: block; animation: fadeIn 0.4s; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block; margin-bottom: 8px; color: var(--primary);
+    font-weight: bold;
+  }
+  .form-group input, .form-group textarea {
+    width: 100%; padding: 12px 15px; border: 2px solid #e2e8f0;
+    border-radius: 10px; font-size: 15px; font-family: inherit;
+    transition: 0.3s;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--secondary);
+  }
+  .form-group textarea { min-height: 100px; resize: vertical; }
+  .file-upload {
+    border: 2px dashed var(--secondary); padding: 30px; text-align: center;
+    border-radius: 15px; cursor: pointer; transition: 0.3s;
+    background: #f8fafc;
+  }
+  .file-upload:hover { background: #f1f5f9; }
+  .file-upload input { display: none; }
+  .file-upload .icon { font-size: 50px; margin-bottom: 10px; }
+  .image-preview {
+    margin-top: 15px; max-width: 100%; max-height: 250px;
+    border-radius: 10px; display: none;
+  }
+  .btn-submit {
+    background: linear-gradient(135deg, var(--primary), var(--electric));
+    color: white; border: none; padding: 14px 35px; border-radius: 50px;
+    font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;
+    width: 100%;
+  }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(30,58,138,0.3); }
+
+  /* ===== تسجيل دخول الأدمن ===== */
+  .login-modal {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+    z-index: 1001; align-items: center; justify-content: center; padding: 20px;
+  }
+  .login-modal.show { display: flex; }
+  .login-box {
+    background: white; padding: 40px; border-radius: 20px;
+    width: 100%; max-width: 420px; position: relative;
+  }
+  .login-box h2 {
+    font-family: 'Cairo', sans-serif; color: var(--primary);
+    text-align: center; margin-bottom: 10px; font-size: 26px;
+  }
+  .login-box .sub { text-align: center; color: #64748b; margin-bottom: 30px; }
+  .login-close {
+    position: absolute; top: 15px; left: 15px; background: #f1f5f9;
+    border: none; width: 35px; height: 35px; border-radius: 50%;
+    cursor: pointer; font-size: 18px;
+  }
+
+  /* ===== الفوتر ===== */
+  .footer {
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+    color: white; padding: 40px 30px 20px; text-align: center;
+  }
+  .footer h3 {
+    font-family: 'Cairo', sans-serif; color: var(--secondary);
+    font-size: 26px; margin-bottom: 15px;
+  }
+  .footer .slogan {
+    font-style: italic; color: var(--accent); margin-bottom: 20px;
+    font-size: 18px;
+  }
+  .footer .contact-info {
+    margin: 20px 0; padding: 20px; background: rgba(255,255,255,0.05);
+    border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto;
+  }
+  .footer .contact-info p { margin: 8px 0; color: #cbd5e1; }
+  .footer .copy {
+    margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
+    color: #94a3b8; font-size: 14px;
+  }
+
+  /* ===== الإشعارات ===== */
+  .toast {
+    position: fixed; top: 90px; left: 50%; transform: translateX(-50%);
+    background: var(--primary); color: white; padding: 15px 30px;
+    border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 2000; display: none; font-weight: bold;
+  }
+  .toast.show { display: block; animation: slideDown 0.4s; }
+  @keyframes slideDown { from { transform: translate(-50%, -50px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+
+  .admin-badge {
+    display: none; background: var(--secondary); color: var(--dark);
+    padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 13px;
+  }
+  .admin-badge.show { display: inline-block; }
+
+  @media (max-width: 768px) {
+    .navbar { flex-direction: column; gap: 15px; padding: 15px; }
+    .nav-links { justify-content: center; }
+    .section { padding: 50px 20px; }
+    .section-title h2 { font-size: 32px; }
+    .admin-header { flex-direction: column; gap: 15px; text-align: center; }
+    .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 15px; left: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== زر الواتساب العائم ===== -->
+<a href="https://wa.me/963936297897" target="_blank" class="whatsapp-float" title="تواصل عبر واتساب">💬</a>
+
+<!-- ===== شريط التنقل ===== -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">⚡ المهندس فادي الرفاعي</a>
+  <div class="nav-links">
+    <a href="#home">الرئيسية</a>
+    <a href="#about">عن المهندس</a>
+    <a href="#services">الخدمات</a>
+    <a href="#gallery">أعمالنا</a>
+    <a href="#contact">تواصل معنا</a>
+  </div>
+  <div style="display:flex; gap:10px; align-items:center;">
+    <span class="admin-badge" id="adminBadge">👑 وضع الإدارة</span>
+    <button class="admin-btn" id="adminToggle" onclick="handleAdminClick()"> دخول الإدارة</button>
+  </div>
+</nav>
+
+<!-- ===== القسم الرئيسي ===== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">⚡ طاقة • احترافية • جودة</div>
+    <h1 class="hero-title">المهندس فادي الرفاعي</h1>
+    <p class="hero-subtitle">للطاقة الشمسية والصيانة الكهربائية</p>
+    <div class="hero-divider"></div>
+    <p class="hero-slogan">"لسنا الوحيدين لكننا الأفضل"</p>
+    <p style="color:#cbd5e1; margin-bottom:30px; font-size:16px; max-width:700px; margin-left:auto; margin-right:auto;">
+      خبرة واسعة في تركيب أنظمة الطاقة الشمسية • صيانة جميع الأجهزة الكهربائية • بيع قطع الغيار الأصلية
+    </p>
+    <div class="hero-buttons">
+      <a href="#services" class="btn btn-primary">✨ خدماتنا</a>
+      <a href="tel:+963936297897" class="btn btn-outline">📞 اتصل الآن</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== عن المهندس ===== -->
+<section class="about-section" id="about">
+  <div class="about-container">
+    <div class="about-card">
+      <div class="about-icon">⚡</div>
+      <h3>المهندس فادي الرفاعي</h3>
+      <div class="title">مهندس كهرباء وطاقة شمسية</div>
+      <p>
+        نقدم خدمات احترافية في مجال الطاقة الشمسية والصيانة الكهربائية بأعلى معايير الجودة.
+        نمتلك خبرة واسعة في تركيب الأنظمة الشمسية المتكاملة، صيانة جميع أنواع الأجهزة الكهربائية،
+        وتوفير قطع الغيار الأصلية بأفضل الأسعار.
+      </p>
+      <p style="color:var(--primary); font-weight:bold; font-size:18px;">
+        "نلتزم بالجودة والدقة في العمل، ورضا عملائنا هو هدفنا الأول"
+      </p>
+      <div style="margin-top:25px;">
+        <a href="tel:+963936297897" class="phone">📞 0936297897</a>
+        <a href="https://wa.me/963936297897" target="_blank" class="phone">💬 واتساب</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الخدمات ===== -->
+<section class="section" id="services">
+  <div class="section-title">
+    <h2>خدماتنا المميزة</h2>
+    <div class="line"></div>
+    <p>نقدم حلولاً متكاملة في مجال الكهرباء والطاقة الشمسية</p>
+  </div>
+  <div class="services-grid" id="servicesGrid"></div>
+</section>
+
+<!-- ===== معرض الأعمال ===== -->
+<section class="gallery-section" id="gallery">
+  <div class="section-title">
+    <h2>معرض أعمالنا</h2>
+    <div class="line"></div>
+    <p>نماذج من مشاريعنا في الطاقة الشمسية والصيانة الكهربائية</p>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- ===== التواصل ===== -->
+<section class="section" id="contact">
+  <div class="section-title">
+    <h2>تواصل معنا</h2>
+    <div class="line"></div>
+    <p>نسعد بخدمتكم على مدار الساعة</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">📞</div>
+      <h3>الاتصال المباشر</h3>
+      <div class="info">
+        <p>للتواصل والاستفسار</p>
+        <p style="font-size:22px; font-weight:bold; color:var(--primary); direction:ltr; margin:15px 0;">
+          0936297897
+        </p>
+      </div>
+      <a href="tel:+963936297897" class="contact-btn btn-call">📞 اتصال فوري</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-icon">💬</div>
+      <h3>واتساب</h3>
+      <div class="info">
+        <p>تواصل سريع عبر الواتساب</p>
+        <p style="margin-top:15px;">نرد على استفساراتكم في أسرع وقت</p>
+      </div>
+      <a href="https://wa.me/963936297897" target="_blank" class="contact-btn btn-wa">💬 مراسلة واتساب</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-icon">🔧</div>
+      <h3>خدماتنا</h3>
+      <div class="info">
+        <p>• تركيب أنظمة الطاقة الشمسية</p>
+        <p>• صيانة جميع الأجهزة الكهربائية</p>
+        <p>• بيع قطع الغيار الأصلية</p>
+        <p>• استشارات فنية مجانية</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== الفوتر ===== -->
+<footer class="footer">
+  <h3>المهندس فادي الرفاعي</h3>
+  <p class="slogan">"لسنا الوحيدين لكننا الأفضل"</p>
+  
+  <div class="contact-info">
+    <p style="font-size:20px; font-weight:bold; color:var(--secondary); direction:ltr; margin-bottom:10px;">
+      📞 0936297897
+    </p>
+    <p>⚡ للطاقة الشمسية والصيانة الكهربائية</p>
+    <p>🔧 صيانة • تركيب • بيع قطع غيار</p>
+  </div>
+
+  <p class="copy">© 2026 المهندس فادي الرفاعي - جميع الحقوق محفوظة</p>
+</footer>
+
+<!-- ===== نافذة تسجيل دخول الأدمن ===== -->
+<div class="login-modal" id="loginModal">
+  <div class="login-box">
+    <button class="login-close" onclick="closeLogin()">✕</button>
+    <h2>🔐 دخول الإدارة</h2>
+    <p class="sub">للأشخاص المخوّلين فقط</p>
+    <form onsubmit="adminLogin(event)">
+      <div class="form-group">
+        <label>اسم المستخدم</label>
+        <input type="text" id="loginUser" required placeholder="أدخل اسم المستخدم">
+      </div>
+      <div class="form-group">
+        <label>كلمة المرور</label>
+        <input type="password" id="loginPass" required placeholder="أدخل كلمة المرور">
+      </div>
+      <button type="submit" class="btn-submit">دخول</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== لوحة التحكم ===== -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-container">
+    <div class="admin-header">
+      <h2>🎛️ لوحة التحكم</h2>
+      <button class="close-btn" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="admin-body">
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchTab('addService', this)">➕ إضافة خدمة</button>
+        <button class="admin-tab" onclick="switchTab('addPhoto', this)">📸 إضافة صورة</button>
+        <button class="admin-tab" onclick="switchTab('manage', this)">⚙️ إدارة المحتوى</button>
+      </div>
+
+      <!-- إضافة خدمة -->
+      <div class="admin-section active" id="addService">
+        <h3 style="color:var(--primary); margin-bottom:20px;">إضافة خدمة جديدة</h3>
+        <form onsubmit="addService(event)">
+          <div class="form-group">
+            <label>اسم الخدمة *</label>
+            <input type="text" id="serviceName" required placeholder="مثال: تركيب ألواح شمسية">
+          </div>
+          <div class="form-group">
+            <label>وصف الخدمة *</label>
+            <textarea id="serviceDesc" required placeholder="اكتب وصفاً تفصيلياً للخدمة..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>السعر (اختياري)</label>
+            <input type="text" id="servicePrice" placeholder="مثال: حسب المساحة">
+          </div>
+          <div class="form-group">
+            <label>رمز تعبيري (اختياري)</label>
+            <input type="text" id="serviceIcon" placeholder="⚡ 🔧  🌞" maxlength="2">
+          </div>
+          <div class="form-group">
+            <label>صورة الخدمة (اختياري)</label>
+            <label class="file-upload" for="serviceImage">
+              <div class="icon">📸</div>
+              <div>اضغط لاختيار صورة</div>
+              <input type="file" id="serviceImage" accept="image/*" onchange="previewImage(event, 'servicePreview')">
+            </label>
+            <img id="servicePreview" class="image-preview">
+          </div>
+          <button type="submit" class="btn-submit">✨ إضافة الخدمة</button>
+        </form>
+      </div>
+
+      <!-- إضافة صورة -->
+      <div class="admin-section" id="addPhoto">
+        <h3 style="color:var(--primary); margin-bottom:20px;">إضافة صورة للمعرض</h3>
+        <form onsubmit="addPhoto(event)">
+          <div class="form-group">
+            <label>عنوان الصورة *</label>
+            <input type="text" id="photoTitle" required placeholder="مثال: مشروع طاقة شمسية">
+          </div>
+          <div class="form-group">
+            <label>اختر الصورة *</label>
+            <label class="file-upload" for="galleryImage">
+              <div class="icon">📸</div>
+              <div>اضغط لاختيار صورة من جهازك</div>
+              <input type="file" id="galleryImage" accept="image/*" required onchange="previewImage(event, 'photoPreview')">
+            </label>
+            <img id="photoPreview" class="image-preview">
+          </div>
+          <button type="submit" class="btn-submit">📤 رفع الصورة</button>
+        </form>
+      </div>
+
+      <!-- إدارة المحتوى -->
+      <div class="admin-section" id="manage">
+        <h3 style="color:var(--primary); margin-bottom:20px;">إدارة المحتوى</h3>
+        <p style="color:#64748b; margin-bottom:20px;">يمكنك تعديل أو حذف أي خدمة أو صورة مباشرة من الموقع.</p>
+        <div style="padding:20px; background:#f0f9ff; border-radius:10px;">
+          <p><strong>📊 إحصائيات:</strong></p>
+          <p style="margin-top:10px;">• عدد الخدمات: <b id="statsServices">0</b></p>
+          <p>• عدد الصور في المعرض: <b id="statsPhotos">0</b></p>
+        </div>
+        <button class="btn-submit" style="margin-top:20px; background:#f44336;" onclick="resetAll()">🗑️ حذف جميع البيانات</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ===== بيانات الأدمن =====
+  const ADMIN = { username: 'fadi', password: 'engineer2026', name: 'المهندس فادي الرفاعي' };
+  let isAdmin = false;
+
+  // ===== البيانات الافتراضية =====
+  const defaultServices = [
+    { id: 1, name: 'تركيب أنظمة الطاقة الشمسية', desc: 'تركيب ألواح شمسية كاملة مع البطاريات والمنظمات بأعلى جودة وضمان', price: 'حسب المساحة', icon: '🌞', image: '' },
+    { id: 2, name: 'صيانة الأجهزة الكهربائية', desc: 'صيانة جميع أنواع الأجهزة المنزلية والصناعية بأيدي خبيرة', price: 'يبدأ من 50 ر.س', icon: '', image: '' },
+    { id: 3, name: 'بيع قطع الغيار', desc: 'توفير جميع قطع الغيار الأصلية للأجهزة الكهربائية بأسعار منافسة', price: 'حسب القطعة', icon: '⚡', image: '' },
+    { id: 4, name: 'صيانة التمديدات الكهربائية', desc: 'كشف الأعطال وإصلاح التمديدات الكهربائية المنزلية والتجارية', price: 'يبدأ من 100 ر.س', icon: '🔌', image: '' },
+    { id: 5, name: 'تركيب الإنارة الشمسية', desc: 'إنارة الشوارع والحدائق بالطاقة الشمسية لتوفير الكهرباء', price: 'حسب المشروع', icon: '💡', image: '' },
+    { id: 6, name: 'استشارات فنية', desc: 'تقديم استشارات مجانية لاختيار الأنظمة المناسبة لمنزلك أو مشروعك', price: 'مجاني', icon: '📋', image: '' }
+  ];
+
+  // ===== تحميل البيانات =====
+  function loadData() {
+    const services = JSON.parse(localStorage.getItem('fadi_services') || 'null') || defaultServices;
+    const photos = JSON.parse(localStorage.getItem('fadi_photos') || '[]');
+    return { services, photos };
+  }
+
+  function saveServices(services) {
+    localStorage.setItem('fadi_services', JSON.stringify(services));
+  }
+
+  function savePhotos(photos) {
+    localStorage.setItem('fadi_photos', JSON.stringify(photos));
+  }
+
+  // ===== عرض الخدمات =====
+  function renderServices() {
+    const { services } = loadData();
+    const grid = document.getElementById('servicesGrid');
+    if (services.length === 0) {
+      grid.innerHTML = '<p style="text-align:center; color:#999; grid-column:1/-1; padding:40px;">لا توجد خدمات حالياً</p>';
+      return;
+    }
+    grid.innerHTML = services.map(s => `
+      <div class="service-card">
+        <div class="admin-controls ${isAdmin ? 'show' : ''}">
+          <button class="ctrl-btn ctrl-edit" onclick="editService(${s.id})" title="تعديل">✏️</button>
+          <button class="ctrl-btn ctrl-delete" onclick="deleteService(${s.id})" title="حذف">🗑️</button>
+        </div>
+        <div class="service-image ${s.image ? '' : 'no-image'}" ${s.image ? `style="background-image:url('${s.image}')"` : ''}>
+          ${s.image ? '' : (s.icon || '⚡')}
+        </div>
+        <div class="service-body">
+          <h3>${s.name}</h3>
+          <p>${s.desc}</p>
+          ${s.price ? `<span class="service-price">${s.price}</span>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ===== عرض المعرض =====
+  function renderGallery() {
+    const { photos } = loadData();
+    const grid = document.getElementById('galleryGrid');
+    if (photos.length === 0) {
+      grid.innerHTML = '<div class="empty-gallery">📸<br><br>سيتم إضافة أعمالنا قريباً</div>';
+      return;
+    }
+    grid.innerHTML = photos.map(p => `
+      <div class="gallery-item" style="background-image:url('${p.image}')">
+        <div class="admin-controls ${isAdmin ? 'show' : ''}">
+          <button class="ctrl-btn ctrl-delete" onclick="deletePhoto(${p.id})" title="حذف">🗑️</button>
+        </div>
+        <div class="overlay">${p.title}</div>
+      </div>
+    `).join('');
+  }
+
+  // ===== تسجيل دخول الأدمن =====
+  function handleAdminClick() {
+    if (isAdmin) {
+      openAdmin();
+    } else {
+      document.getElementById('loginModal').classList.add('show');
+    }
+  }
+
+  function adminLogin(e) {
+    e.preventDefault();
+    const user = document.getElementById('loginUser').value;
+    const pass = document.getElementById('loginPass').value;
+    if (user === ADMIN.username && pass === ADMIN.password) {
+      isAdmin = true;
+      document.getElementById('loginModal').classList.remove('show');
+      document.getElementById('adminBadge').classList.add('show');
+      document.getElementById('adminToggle').innerHTML = '🎛️ لوحة التحكم';
+      document.getElementById('loginUser').value = '';
+      document.getElementById('loginPass').value = '';
+      renderServices();
+      renderGallery();
+      updateStats();
+      showToast('✅ مرحباً ' + ADMIN.name);
+      setTimeout(openAdmin, 500);
+    } else {
+      showToast('❌ بيانات الدخول غير صحيحة');
+    }
+  }
+
+  function closeLogin() {
+    document.getElementById('loginModal').classList.remove('show');
+  }
+
+  function openAdmin() {
+    document.getElementById('adminPanel').classList.add('show');
+    updateStats();
+  }
+
+  function closeAdmin() {
+    document.getElementById('adminPanel').classList.remove('show');
+  }
+
+  // ===== التبديل بين التبويبات =====
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  }
+
+  // ===== معاينة الصور =====
+  function previewImage(e, previewId) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const preview = document.getElementById(previewId);
+      preview.src = event.target.result;
+      preview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ===== إضافة خدمة =====
+  function addService(e) {
+    e.preventDefault();
+    const { services } = loadData();
+    const imageFile = document.getElementById('serviceImage').files[0];
+    const newService = {
+      id: Date.now(),
+      name: document.getElementById('serviceName').value,
+      desc: document.getElementById('serviceDesc').value,
+      price: document.getElementById('servicePrice').value,
+      icon: document.getElementById('serviceIcon').value || '',
+      image: ''
+    };
+
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        newService.image = event.target.result;
+        services.push(newService);
+        saveServices(services);
+        renderServices();
+        updateStats();
+        e.target.reset();
+        document.getElementById('servicePreview').style.display = 'none';
+        showToast('✅ تمت إضافة الخدمة بنجاح');
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      services.push(newService);
+      saveServices(services);
+      renderServices();
+      updateStats();
+      e.target.reset();
+      showToast('✅ تمت إضافة الخدمة بنجاح');
+    }
+  }
+
+  // ===== إضافة صورة =====
+  function addPhoto(e) {
+    e.preventDefault();
+    const { photos } = loadData();
+    const file = document.getElementById('galleryImage').files[0];
+    const title = document.getElementById('photoTitle').value;
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      photos.push({ id: Date.now(), title: title, image: event.target.result });
+      savePhotos(photos);
+      renderGallery();
+      updateStats();
+      e.target.reset();
+      document.getElementById('photoPreview').style.display = 'none';
+      showToast('✅ تم رفع الصورة بنجاح');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ===== تعديل خدمة =====
+  function editService(id) {
+    const { services } = loadData();
+    const service = services.find(s => s.id === id);
+    if (!service) return;
+    const newName = prompt('اسم الخدمة:', service.name);
+    if (newName === null) return;
+    const newDesc = prompt('الوصف:', service.desc);
+    if (newDesc === null) return;
+    const newPrice = prompt('السعر:', service.price || '');
+    if (newPrice === null) return;
+    service.name = newName;
+    service.desc = newDesc;
+    service.price = newPrice;
+    saveServices(services);
+    renderServices();
+    showToast('✅ تم التعديل');
+  }
+
+  // ===== حذف خدمة =====
+  function deleteService(id) {
+    if (!confirm('هل تريد حذف هذه الخدمة؟')) return;
+    let { services } = loadData();
+    services = services.filter(s => s.id !== id);
+    saveServices(services);
+    renderServices();
+    updateStats();
+    showToast('🗑️ تم الحذف');
+  }
+
+  // ===== حذف صورة =====
+  function deletePhoto(id) {
+    if (!confirm('هل تريد حذف هذه الصورة؟')) return;
+    let { photos } = loadData();
+    photos = photos.filter(p => p.id !== id);
+    savePhotos(photos);
+    renderGallery();
+    updateStats();
+    showToast('️ تم الحذف');
+  }
+
+  // ===== إحصائيات =====
+  function updateStats() {
+    const { services, photos } = loadData();
+    document.getElementById('statsServices').textContent = services.length;
+    document.getElementById('statsPhotos').textContent = photos.length;
+  }
+
+  // ===== حذف جميع البيانات =====
+  function resetAll() {
+    if (!confirm('⚠️ سيتم حذف جميع الخدمات والصور! هل أنت متأكد؟')) return;
+    if (!confirm('تأكيد نهائي: سيتم حذف كل شيء!')) return;
+    localStorage.removeItem('fadi_services');
+    localStorage.removeItem('fadi_photos');
+    renderServices();
+    renderGallery();
+    updateStats();
+    showToast('🗑️ تم حذف جميع البيانات');
+  }
+
+  // ===== الإشعارات =====
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  // ===== التمرير السلس =====
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // ===== التشغيل الأولي =====
+  renderServices();
+  renderGallery();
+</script>
+
+</body>
+</html>
