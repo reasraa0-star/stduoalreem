@@ -432,7 +432,7 @@
 <body>
 
 <!-- ===== زر الواتساب العائم ===== -->
-<a href="https://wa.me/963937376942" target="_blank" class="whatsapp-float" title="تواصل عبر واتساب">💬</a>
+<a href="https://wa.me/963937376942" target="_blank" class="whatsapp-float" title="تواصل عبر واتساب"></a>
 
 <!-- ===== شريط التنقل ===== -->
 <nav class="navbar">
@@ -476,7 +476,7 @@
   </div>
   <div class="about-grid">
     <div class="about-card">
-      <div class="about-icon">👔</div>
+      <div class="about-icon"></div>
       <h3>شادي الرفاعي</h3>
       <div class="role">المؤسس والمدير العام</div>
       <p>يقود ستوديو الريم برؤية احترافية وخبرة واسعة في مجال الطباعة والتصوير، ويسعى دائماً لتقديم أفضل الخدمات لعملائنا الكرام.</p>
@@ -528,7 +528,7 @@
   <div class="contact-grid">
     <!-- شادي الرفاعي -->
     <div class="contact-card">
-      <div class="contact-icon">👔</div>
+      <div class="contact-icon"></div>
       <h3>شادي الرفاعي</h3>
       <p style="color:var(--secondary); font-weight:bold; margin-bottom:15px;">المدير العام</p>
       <div class="info">
@@ -631,10 +631,7 @@
       </div>
       <button type="submit" class="btn-submit">دخول</button>
     </form>
-    <div style="margin-top:20px; padding:15px; background:#f8f5f0; border-radius:10px; font-size:13px; color:#666;">
-      <strong>حساب المدير:</strong><br>
-      👤 المستخدم: <b>shadi</b> | 🔑 كلمة المرور: <b>reem2026</b>
-    </div>
+    <!-- ✅ تم إزالة عرض بيانات الدخول - الثغرة الأمنية -->
   </div>
 </div>
 
@@ -642,12 +639,12 @@
 <div class="admin-panel" id="adminPanel">
   <div class="admin-container">
     <div class="admin-header">
-      <h2>🎛️ لوحة التحكم</h2>
-      <button class="close-btn" onclick="closeAdmin()">✕</button>
+      <h2>️ لوحة التحكم</h2>
+      <button class="close-btn" onclick="closeAdmin()"></button>
     </div>
     <div class="admin-body">
       <div class="admin-tabs">
-        <button class="admin-tab active" onclick="switchTab('addService', this)">➕ إضافة خدمة</button>
+        <button class="admin-tab active" onclick="switchTab('addService', this)"> إضافة خدمة</button>
         <button class="admin-tab" onclick="switchTab('addPhoto', this)">🖼️ إضافة صورة</button>
         <button class="admin-tab" onclick="switchTab('manage', this)">⚙️ إدارة المحتوى</button>
       </div>
@@ -670,7 +667,7 @@
           </div>
           <div class="form-group">
             <label>رمز تعبيري (اختياري)</label>
-            <input type="text" id="serviceIcon" placeholder="🖨️ 📷 🎨 ✏️" maxlength="2">
+            <input type="text" id="serviceIcon" placeholder="️ 📷 🎨 ✏️" maxlength="2">
           </div>
           <div class="form-group">
             <label>صورة الخدمة (اختياري)</label>
@@ -696,13 +693,13 @@
           <div class="form-group">
             <label>اختر الصورة *</label>
             <label class="file-upload" for="galleryImage">
-              <div class="icon">🖼️</div>
+              <div class="icon">️</div>
               <div>اضغط لاختيار صورة من جهازك</div>
               <input type="file" id="galleryImage" accept="image/*" required onchange="previewImage(event, 'photoPreview')">
             </label>
             <img id="photoPreview" class="image-preview">
           </div>
-          <button type="submit" class="btn-submit">📤 رفع الصورة</button>
+          <button type="submit" class="btn-submit"> رفع الصورة</button>
         </form>
       </div>
 
@@ -711,7 +708,7 @@
         <h3 style="color:var(--primary); margin-bottom:20px;">إدارة المحتوى</h3>
         <p style="color:#666; margin-bottom:20px;">يمكنك الآن تعديل أو حذف أي خدمة أو صورة مباشرة من الموقع (ستظهر أزرار التعديل والحذف بجانب كل عنصر).</p>
         <div style="padding:20px; background:#f8f5f0; border-radius:10px;">
-          <p><strong>📊 إحصائيات:</strong></p>
+          <p><strong> إحصائيات:</strong></p>
           <p style="margin-top:10px;">• عدد الخدمات: <b id="statsServices">0</b></p>
           <p>• عدد الصور في المعرض: <b id="statsPhotos">0</b></p>
         </div>
@@ -730,7 +727,7 @@
 
   // ===== البيانات الافتراضية =====
   const defaultServices = [
-    { id: 1, name: 'الطباعة الرقمية', desc: 'طباعة عالية الجودة بأحدث الطابعات الرقمية لجميع المقاسات والأوراق', price: 'يبدأ من 1 ر.س', icon: '🖨️', image: '' },
+    { id: 1, name: 'الطباعة الرقمية', desc: 'طباعة عالية الجودة بأحدث الطابعات الرقمية لجميع المقاسات والأوراق', price: 'يبدأ من 1 ر.س', icon: '️', image: '' },
     { id: 2, name: 'التصوير الاحترافي', desc: 'جلسات تصوير احترافية للمناسبات والبورتريه والمنتجات', price: 'يبدأ من 150 ر.س', icon: '📷', image: '' },
     { id: 3, name: 'التصميم الجرافيكي', desc: 'تصميم شعارات، كروت شخصية، بوسترات، وهويات تجارية', price: 'يبدأ من 100 ر.س', icon: '🎨', image: '' },
     { id: 4, name: 'طباعة الاستكرات', desc: 'طباعة استكرات لاصقة بجميع الأشكال والمقاسات', price: 'يبدأ من 50 ر.س', icon: '✨', image: '' },
@@ -765,7 +762,7 @@
       <div class="service-card">
         <div class="admin-controls ${isAdmin ? 'show' : ''}">
           <button class="ctrl-btn ctrl-edit" onclick="editService(${s.id})" title="تعديل">✏️</button>
-          <button class="ctrl-btn ctrl-delete" onclick="deleteService(${s.id})" title="حذف">🗑️</button>
+          <button class="ctrl-btn ctrl-delete" onclick="deleteService(${s.id})" title="حذف">️</button>
         </div>
         <div class="service-image ${s.image ? '' : 'no-image'}" ${s.image ? `style="background-image:url('${s.image}')"` : ''}>
           ${s.image ? '' : (s.icon || '🎯')}
