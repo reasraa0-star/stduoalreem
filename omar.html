@@ -3,443 +3,285 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عمر الرفاعي | سوفت وير وحجز جوازات</title>
+<title>عمر الرفاعي | برمجة الموبايلات وحجز الجوازات</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tajawal', sans-serif; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Tajawal', sans-serif; background: #f5f7fa; color: #2d3748; }
+  
   :root {
-    --primary: #0ea5e9;
-    --secondary: #6366f1;
-    --accent: #8b5cf6;
-    --dark: #1e293b;
-    --light: #f8fafc;
-    --success: #10b981;
+    --primary: #4299e1;
+    --primary-dark: #2b6cb0;
+    --secondary: #667eea;
+    --accent: #764ba2;
+    --success: #48bb78;
+    --dark: #1a202c;
+    --light: #f7fafc;
   }
-  body { background: var(--light); color: #333; min-height: 100vh; }
 
-  /* ===== شريط التنقل ===== */
-  .navbar {
-    background: linear-gradient(135deg, var(--dark), var(--secondary));
-    padding: 15px 30px; display: flex; justify-content: space-between;
-    align-items: center; position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  /* ===== Header ===== */
+  .header {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+    color: white; padding: 15px 0; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   }
-  .nav-logo { 
-    color: var(--primary); font-size: 20px; font-weight: 900; 
-    text-decoration: none; display: flex; align-items: center; gap: 10px;
-    font-family: 'Cairo', sans-serif;
-  }
-  .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
-  .nav-links a {
-    color: white; text-decoration: none; padding: 8px 18px;
-    border-radius: 8px; transition: 0.3s; font-weight: 500;
-  }
-  .nav-links a:hover { background: var(--primary); color: var(--dark); }
-  .admin-btn {
-    background: transparent; border: 2px solid var(--primary);
-    color: var(--primary); padding: 8px 18px; border-radius: 8px;
-    cursor: pointer; font-weight: bold; transition: 0.3s;
-  }
-  .admin-btn:hover { background: var(--primary); color: white; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+  .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+  .logo { font-family: 'Cairo', sans-serif; font-size: 24px; font-weight: 900; display: flex; align-items: center; gap: 10px; text-decoration: none; color: white; }
+  .nav-menu { display: flex; gap: 10px; flex-wrap: wrap; }
+  .nav-menu a { color: white; text-decoration: none; padding: 8px 16px; border-radius: 8px; transition: 0.3s; font-weight: 600; }
+  .nav-menu a:hover { background: rgba(255,255,255,0.2); }
+  .admin-btn { background: transparent; border: 2px solid white; color: white; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+  .admin-btn:hover { background: white; color: var(--dark); }
+  .admin-badge { display: none; background: var(--success); color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+  .admin-badge.show { display: inline-block; }
 
-  /* ===== القسم الرئيسي ===== */
+  /* ===== Hero Section ===== */
   .hero {
-    background: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(99,102,241,0.9)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><rect fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2" width="60" height="60"/></svg>');
-    min-height: 90vh; display: flex; align-items: center; justify-content: center;
-    text-align: center; color: white; padding: 40px 20px; position: relative;
-    overflow: hidden;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+    color: white; padding: 100px 20px; text-align: center; position: relative; overflow: hidden;
   }
-  .hero-content { position: relative; z-index: 2; max-width: 1000px; }
-  .hero-badge {
-    display: inline-block; background: var(--primary); color: white;
-    padding: 8px 25px; border-radius: 50px; font-weight: bold;
-    margin-bottom: 20px; font-size: 14px;
+  .hero::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-  .hero-title {
-    font-family: 'Amiri', serif; font-size: clamp(40px, 8vw, 70px);
-    font-weight: 700; margin-bottom: 15px; line-height: 1.2;
-    background: linear-gradient(135deg, #fff, var(--primary));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .hero-subtitle {
-    font-family: 'Cairo', sans-serif; font-size: 22px; color: var(--primary);
-    margin-bottom: 20px; font-weight: 700;
-  }
-  .hero-divider {
-    width: 100px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent));
-    margin: 30px auto; border-radius: 2px;
-  }
-  .hero-slogan {
-    font-size: 18px; color: #cbd5e1; margin-bottom: 30px;
-    padding: 15px 30px; background: rgba(255,255,255,0.1);
-    display: inline-block; border-radius: 10px;
-  }
-  .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    padding: 14px 35px; border-radius: 50px; font-size: 16px;
-    font-weight: bold; cursor: pointer; border: none; transition: 0.3s;
-    text-decoration: none; display: inline-block;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white;
-  }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(14,165,233,0.4); }
-  .btn-outline {
-    background: transparent; color: white; border: 2px solid white;
-  }
-  .btn-outline:hover { background: white; color: var(--dark); }
-  .btn-whatsapp {
-    background: #25D366; color: white;
-  }
-  .btn-whatsapp:hover { background: #128C7E; transform: translateY(-3px); }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+  .hero h1 { font-family: 'Cairo', sans-serif; font-size: clamp(32px, 6vw, 56px); font-weight: 900; margin-bottom: 15px; line-height: 1.2; }
+  .hero-subtitle { font-size: 20px; margin-bottom: 20px; opacity: 0.95; }
+  .hero-tagline { background: rgba(255,255,255,0.2); display: inline-block; padding: 12px 30px; border-radius: 50px; margin: 20px 0; font-weight: 600; }
+  .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+  .btn { padding: 14px 35px; border-radius: 50px; font-weight: 700; cursor: pointer; border: none; transition: all 0.3s; text-decoration: none; display: inline-block; font-size: 16px; }
+  .btn-white { background: white; color: var(--secondary); }
+  .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+  .btn-outline { background: transparent; color: white; border: 2px solid white; }
+  .btn-outline:hover { background: white; color: var(--secondary); }
 
-  /* ===== الأقسام ===== */
-  .section { padding: 80px 30px; max-width: 1300px; margin: 0 auto; }
-  .section-title {
-    text-align: center; margin-bottom: 50px;
-  }
-  .section-title h2 {
-    font-family: 'Amiri', serif; font-size: 42px; color: var(--dark);
-    margin-bottom: 10px;
-  }
-  .section-title .line {
-    width: 100px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent));
-    margin: 15px auto; border-radius: 2px;
-  }
-  .section-title p { color: #64748b; font-size: 16px; }
+  /* ===== Services Grid ===== */
+  .section { padding: 80px 20px; }
+  .section-title { text-align: center; margin-bottom: 50px; }
+  .section-title h2 { font-family: 'Cairo', sans-serif; font-size: 36px; color: var(--dark); margin-bottom: 10px; }
+  .section-title .line { width: 80px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--secondary)); margin: 15px auto; border-radius: 2px; }
+  .section-title p { color: #718096; font-size: 16px; }
 
-  /* ===== الخدمات الرئيسية ===== */
-  .services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+  .service-box {
+    background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s; border: 2px solid transparent;
   }
-  .service-card {
-    background: white; border-radius: 20px; overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: 0.3s;
-    border: 2px solid transparent; position: relative;
-  }
-  .service-card:hover { 
-    transform: translateY(-10px); 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    border-color: var(--primary);
-  }
-  .service-header {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white; padding: 30px 25px; text-align: center;
-  }
+  .service-box:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-color: var(--primary); }
   .service-icon {
-    width: 80px; height: 80px; margin: 0 auto 15px;
-    background: rgba(255,255,255,0.2); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 40px;
+    width: 100%; height: 150px; display: flex; align-items: center; justify-content: center;
+    font-size: 60px; color: white;
   }
-  .service-header h3 { font-family: 'Cairo', sans-serif; font-size: 22px; margin-bottom: 8px; }
-  .service-body { padding: 25px; }
-  .service-list {
-    list-style: none; margin-bottom: 20px;
-  }
-  .service-list li {
-    padding: 10px 0; border-bottom: 1px solid #f1f5f9;
-    display: flex; align-items: center; gap: 10px;
-    color: #475569;
-  }
-  .service-list li:before {
-    content: '✓'; color: var(--success); font-weight: bold;
-    width: 24px; height: 24px; background: #d1fae5;
-    border-radius: 50%; display: flex; align-items: center;
-    justify-content: center; font-size: 14px; flex-shrink: 0;
-  }
-  .admin-controls {
-    position: absolute; top: 10px; left: 10px; display: none; gap: 8px;
-  }
-  .admin-controls.show { display: flex; }
-  .ctrl-btn {
-    width: 35px; height: 35px; border-radius: 50%; border: none;
-    cursor: pointer; color: white; font-weight: bold; transition: 0.3s;
-  }
-  .ctrl-edit { background: #2196F3; }
-  .ctrl-delete { background: #f44336; }
-  .ctrl-btn:hover { transform: scale(1.1); }
+  .service-icon.frp { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+  .service-icon.imei { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+  .service-icon.flash { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+  .service-icon.icloud { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+  .service-content { padding: 25px; }
+  .service-content h3 { font-family: 'Cairo', sans-serif; font-size: 20px; margin-bottom: 12px; color: var(--dark); }
+  .service-content p { color: #718096; line-height: 1.7; margin-bottom: 15px; }
+  .service-list { list-style: none; }
+  .service-list li { padding: 8px 0; color: #4a5568; display: flex; align-items: center; gap: 10px; }
+  .service-list li:before { content: '✓'; color: var(--success); font-weight: bold; width: 22px; height: 22px; background: #c6f6d5; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
 
-  /* ===== نموذج الطلب الذكي ===== */
-  .order-section {
-    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-    padding: 80px 30px;
-  }
-  .order-container { max-width: 800px; margin: 0 auto; }
+  /* ===== Order Form ===== */
+  .order-section { background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%); padding: 80px 20px; }
+  .order-container { max-width: 700px; margin: 0 auto; }
   .order-card {
     background: white; padding: 40px 30px; border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
   }
-  .order-title {
-    text-align: center; margin-bottom: 30px;
-    font-family: 'Cairo', sans-serif; color: var(--dark);
-    font-size: 28px;
-  }
-  .form-group { margin-bottom: 20px; }
-  .form-group label {
-    display: block; margin-bottom: 8px; color: var(--dark);
-    font-weight: bold; font-size: 15px;
-  }
+  .order-title { text-align: center; font-family: 'Cairo', sans-serif; font-size: 28px; color: var(--dark); margin-bottom: 10px; }
+  .order-subtitle { text-align: center; color: #718096; margin-bottom: 35px; }
+  .form-group { margin-bottom: 22px; }
+  .form-group label { display: block; margin-bottom: 8px; color: var(--dark); font-weight: 700; font-size: 14px; }
   .form-group select, .form-group input, .form-group textarea {
-    width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0;
-    border-radius: 12px; font-size: 15px; font-family: inherit;
-    transition: 0.3s; background: white;
+    width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; border-radius: 12px;
+    font-size: 15px; font-family: inherit; transition: all 0.3s; background: white;
   }
   .form-group select:focus, .form-group input:focus, .form-group textarea:focus {
-    outline: none; border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(14,165,233,0.1);
+    outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(66,153,225,0.1);
   }
-  .form-row {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .btn-submit {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: linear-gradient(135deg, var(--success) 0%, #38a169 100%);
     color: white; border: none; padding: 16px 40px; border-radius: 50px;
-    font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s;
-    width: 100%; display: flex; align-items: center; justify-content: center;
-    gap: 10px;
+    font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.3s;
+    width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
   }
-  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(14,165,233,0.3); }
+  .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(72,187,120,0.3); }
 
-  /* ===== حجز الجوازات ===== */
-  .passport-section {
-    background: linear-gradient(135deg, var(--dark), var(--secondary));
-    color: white; padding: 80px 30px;
-  }
+  /* ===== Passport Section ===== */
+  .passport-section { background: linear-gradient(135deg, var(--dark) 0%, #2d3748 100%); color: white; padding: 80px 20px; }
   .passport-section .section-title h2 { color: white; }
-  .passport-section .section-title p { color: #cbd5e1; }
-  .passport-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px; max-width: 1000px; margin: 0 auto;
-  }
+  .passport-section .section-title p { color: #a0aec0; }
+  .passport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1000px; margin: 0 auto; }
   .passport-card {
-    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
     padding: 35px 30px; border-radius: 20px; text-align: center;
-    border: 2px solid rgba(255,255,255,0.2); transition: 0.3s;
+    border: 2px solid rgba(255,255,255,0.1); transition: all 0.3s;
   }
-  .passport-card:hover {
-    transform: translateY(-5px); background: rgba(255,255,255,0.15);
-  }
-  .passport-icon {
-    width: 70px; height: 70px; margin: 0 auto 20px;
-    background: var(--primary); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 35px;
-  }
+  .passport-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+  .passport-icon { width: 70px; height: 70px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; }
   .passport-card h3 { font-family: 'Cairo', sans-serif; margin-bottom: 15px; font-size: 20px; }
-  .passport-card p { color: #e2e8f0; line-height: 1.8; margin-bottom: 20px; }
+  .passport-card p { color: #e2e8f0; line-height: 1.8; margin-bottom: 20px; font-size: 14px; }
+  .passport-features { list-style: none; text-align: right; margin-bottom: 25px; }
+  .passport-features li { padding: 8px 0; color: #cbd5e0; display: flex; align-items: center; gap: 10px; }
+  .passport-features li:before { content: '✓'; color: var(--success); font-weight: bold; }
+  .btn-passport { background: var(--success); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; display: inline-block; font-weight: 700; transition: 0.3s; }
+  .btn-passport:hover { background: #38a169; transform: translateY(-2px); }
 
-  /* ===== زر الواتساب العائم ===== */
+  /* ===== Contact ===== */
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto; }
+  .contact-card {
+    background: white; padding: 35px 30px; border-radius: 20px;
+    text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s; border-top: 4px solid var(--primary);
+  }
+  .contact-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+  .contact-icon { width: 70px; height: 70px; margin: 0 auto 20px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; color: white; }
+  .contact-card h3 { font-family: 'Cairo', sans-serif; margin-bottom: 15px; color: var(--dark); font-size: 20px; }
+  .contact-card p { color: #718096; line-height: 1.8; margin-bottom: 20px; }
+  .contact-card .phone { font-size: 26px; font-weight: 900; color: var(--primary); direction: ltr; margin: 15px 0; }
+  .btn-contact { background: var(--primary); color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; display: inline-block; font-weight: 700; transition: 0.3s; }
+  .btn-contact:hover { background: var(--primary-dark); transform: translateY(-2px); }
+  .btn-whatsapp { background: #25D366; color: white; }
+  .btn-whatsapp:hover { background: #128C7E; }
+
+  /* ===== Floating WhatsApp ===== */
   .whatsapp-float {
     position: fixed; bottom: 25px; left: 25px; z-index: 999;
-    width: 65px; height: 65px; border-radius: 50%;
+    width: 60px; height: 60px; border-radius: 50%;
     background: #25D366; color: white;
     display: flex; align-items: center; justify-content: center;
-    font-size: 35px; text-decoration: none;
-    box-shadow: 0 5px 25px rgba(37,211,102,0.5);
+    font-size: 32px; text-decoration: none;
+    box-shadow: 0 5px 20px rgba(37,211,102,0.4);
     animation: pulse 2s infinite; transition: 0.3s;
   }
   .whatsapp-float:hover { transform: scale(1.1); }
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 5px 25px rgba(37,211,102,0.5); }
-    50% { box-shadow: 0 5px 35px rgba(37,211,102,0.8); }
+    0%, 100% { box-shadow: 0 5px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 5px 30px rgba(37,211,102,0.7); }
   }
 
-  /* ===== لوحة التحكم ===== */
-  .admin-panel {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-    z-index: 1000; overflow-y: auto; padding: 20px;
-  }
+  /* ===== Footer ===== */
+  .footer { background: var(--dark); color: white; padding: 50px 20px 20px; text-align: center; }
+  .footer h3 { font-family: 'Cairo', sans-serif; font-size: 26px; margin-bottom: 15px; color: var(--primary); }
+  .footer-info { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 15px; margin: 25px auto; max-width: 700px; border: 1px solid rgba(255,255,255,0.1); }
+  .footer-info p { margin: 10px 0; color: #e2e8f0; }
+  .footer-info .phone { font-size: 28px; font-weight: 900; color: var(--primary); direction: ltr; margin: 15px 0 !important; }
+  .footer-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 25px 0; }
+  .footer-links a { color: white; text-decoration: none; padding: 10px 20px; background: rgba(255,255,255,0.1); border-radius: 20px; transition: 0.3s; }
+  .footer-links a:hover { background: var(--primary); }
+  .footer-copy { margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: #a0aec0; font-size: 14px; }
+
+  /* ===== Admin Modal ===== */
+  .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+  .modal.show { display: flex; }
+  .modal-content { background: white; padding: 40px; border-radius: 20px; width: 100%; max-width: 450px; position: relative; }
+  .modal-close { position: absolute; top: 15px; left: 15px; background: #f7fafc; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 18px; }
+  .modal h2 { font-family: 'Cairo', sans-serif; text-align: center; margin-bottom: 10px; color: var(--dark); }
+  .modal-subtitle { text-align: center; color: #718096; margin-bottom: 30px; }
+  .btn-login { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; padding: 14px 30px; border-radius: 50px; font-size: 16px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; }
+  .btn-login:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(66,153,225,0.3); }
+
+  /* ===== Admin Panel ===== */
+  .admin-panel { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; overflow-y: auto; padding: 20px; }
   .admin-panel.show { display: block; }
-  .admin-container {
-    background: white; max-width: 900px; margin: 20px auto;
-    border-radius: 20px; overflow: hidden;
-  }
-  .admin-header {
-    background: linear-gradient(135deg, var(--dark), var(--secondary));
-    color: white; padding: 25px 30px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
+  .admin-container { background: white; max-width: 900px; margin: 20px auto; border-radius: 20px; overflow: hidden; }
+  .admin-header { background: linear-gradient(135deg, var(--dark), var(--secondary)); color: white; padding: 25px 30px; display: flex; justify-content: space-between; align-items: center; }
   .admin-header h2 { font-family: 'Cairo', sans-serif; font-size: 24px; }
-  .close-btn {
-    background: rgba(255,255,255,0.2); color: white; border: none;
-    width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
-    font-size: 20px;
-  }
   .admin-body { padding: 30px; }
-  .admin-tabs {
-    display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0;
-    flex-wrap: wrap;
-  }
-  .admin-tab {
-    padding: 12px 25px; background: transparent; border: none;
-    cursor: pointer; font-weight: bold; color: #64748b; transition: 0.3s;
-    border-bottom: 3px solid transparent; margin-bottom: -2px;
-  }
-  .admin-tab.active { color: var(--primary); border-bottom-color: var(--accent); }
+  .admin-tabs { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0; flex-wrap: wrap; }
+  .admin-tab { padding: 12px 25px; background: transparent; border: none; cursor: pointer; font-weight: 700; color: #718096; transition: 0.3s; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+  .admin-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
   .admin-section { display: none; }
-  .admin-section.active { display: block; animation: fadeIn 0.4s; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .admin-section.active { display: block; }
+  .btn-admin { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; padding: 14px 35px; border-radius: 50px; font-size: 16px; font-weight: 700; cursor: pointer; width: 100%; transition: 0.3s; }
+  .btn-admin:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(66,153,225,0.3); }
+  .btn-danger { background: #f56565; }
+  .btn-danger:hover { background: #e53e3e; }
 
-  .form-group label { display: block; margin-bottom: 8px; color: var(--dark); font-weight: bold; }
-  .form-group input, .form-group textarea {
-    width: 100%; padding: 12px 15px; border: 2px solid #e2e8f0;
-    border-radius: 10px; font-size: 15px; font-family: inherit; transition: 0.3s;
-  }
-  .form-group input:focus, .form-group textarea:focus {
-    outline: none; border-color: var(--primary);
-  }
-  .form-group textarea { min-height: 100px; resize: vertical; }
-  .btn-submit-admin {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    color: white; border: none; padding: 14px 35px; border-radius: 50px;
-    font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;
-    width: 100%;
-  }
-  .btn-submit-admin:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(14,165,233,0.3); }
-
-  /* ===== تسجيل دخول الأدمن ===== */
-  .login-modal {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-    z-index: 1001; align-items: center; justify-content: center; padding: 20px;
-  }
-  .login-modal.show { display: flex; }
-  .login-box {
-    background: white; padding: 40px; border-radius: 20px;
-    width: 100%; max-width: 420px; position: relative;
-  }
-  .login-box h2 {
-    font-family: 'Cairo', sans-serif; color: var(--dark);
-    text-align: center; margin-bottom: 10px; font-size: 26px;
-  }
-  .login-box .sub { text-align: center; color: #64748b; margin-bottom: 30px; }
-  .login-close {
-    position: absolute; top: 15px; left: 15px; background: #f1f5f9;
-    border: none; width: 35px; height: 35px; border-radius: 50%;
-    cursor: pointer; font-size: 18px;
-  }
-
-  /* ===== الفوتر ===== */
-  .footer {
-    background: linear-gradient(135deg, var(--dark), var(--secondary));
-    color: white; padding: 50px 30px 20px; text-align: center;
-  }
-  .footer h3 {
-    font-family: 'Cairo', sans-serif; color: var(--primary);
-    font-size: 26px; margin-bottom: 15px;
-  }
-  .footer .contact-info {
-    margin: 25px 0; padding: 25px; background: rgba(255,255,255,0.05);
-    border-radius: 15px; max-width: 700px; margin-left: auto; margin-right: auto;
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-  .footer .contact-info p { margin: 10px 0; color: #e2e8f0; font-size: 16px; }
-  .footer .contact-info .phone {
-    font-size: 24px; font-weight: bold; color: var(--primary);
-    direction: ltr; margin: 15px 0;
-  }
-  .footer .links {
-    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
-    margin: 20px 0;
-  }
-  .footer .links a {
-    color: white; text-decoration: none; padding: 8px 20px;
-    background: rgba(255,255,255,0.1); border-radius: 20px;
-    transition: 0.3s;
-  }
-  .footer .links a:hover { background: var(--primary); }
-  .footer .copy {
-    margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);
-    color: #94a3b8; font-size: 14px;
-  }
-
-  /* ===== الإشعارات ===== */
   .toast {
     position: fixed; top: 90px; left: 50%; transform: translateX(-50%);
-    background: var(--primary); color: white; padding: 15px 30px;
+    background: var(--success); color: white; padding: 15px 30px;
     border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 2000; display: none; font-weight: bold;
+    z-index: 2000; display: none; font-weight: 700;
   }
   .toast.show { display: block; animation: slideDown 0.4s; }
   @keyframes slideDown { from { transform: translate(-50%, -50px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
 
-  .admin-badge {
-    display: none; background: var(--primary); color: white;
-    padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 13px;
-  }
-  .admin-badge.show { display: inline-block; }
-
   @media (max-width: 768px) {
-    .navbar { flex-direction: column; gap: 15px; padding: 15px; }
-    .nav-links { justify-content: center; }
+    .header-content { flex-direction: column; text-align: center; }
+    .nav-menu { justify-content: center; }
+    .hero { padding: 60px 20px; }
     .section { padding: 50px 20px; }
-    .section-title h2 { font-size: 32px; }
-    .admin-header { flex-direction: column; gap: 15px; text-align: center; }
     .form-row { grid-template-columns: 1fr; }
-    .whatsapp-float { width: 55px; height: 55px; font-size: 28px; bottom: 15px; left: 15px; }
+    .whatsapp-float { width: 50px; height: 50px; font-size: 26px; bottom: 15px; left: 15px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== زر الواتساب العائم ===== -->
-<a href="https://wa.me/963994441442" target="_blank" class="whatsapp-float" title="تواصل عبر واتساب">💬</a>
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/963994451442" target="_blank" class="whatsapp-float" title="تواصل عبر واتساب">💬</a>
 
-<!-- ===== شريط التنقل ===== -->
-<nav class="navbar">
-  <a href="index.html" class="nav-logo">📱 عمر الرفاعي</a>
-  <div class="nav-links">
-    <a href="#home">الرئيسية</a>
-    <a href="#software">سوفت وير</a>
-    <a href="#passport">جوازات</a>
-    <a href="#order">طلب خدمة</a>
-    <a href="#contact">تواصل معنا</a>
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <a href="index.html" class="logo">📱 عمر الرفاعي</a>
+      <nav class="nav-menu">
+        <a href="#home">الرئيسية</a>
+        <a href="#services">الخدمات</a>
+        <a href="#order">اطلب الآن</a>
+        <a href="#passport">الجوازات</a>
+        <a href="#contact">تواصل معنا</a>
+      </nav>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <span class="admin-badge" id="adminBadge">👑 الإدارة</span>
+        <button class="admin-btn" onclick="handleAdminClick()">🔐 دخول</button>
+      </div>
+    </div>
   </div>
-  <div style="display:flex; gap:10px; align-items:center;">
-    <span class="admin-badge" id="adminBadge">👑 وضع الإدارة</span>
-    <button class="admin-btn" id="adminToggle" onclick="handleAdminClick()">🔐 دخول الإدارة</button>
-  </div>
-</nav>
+</header>
 
-<!-- ===== القسم الرئيسي ===== -->
+<!-- Hero -->
 <section class="hero" id="home">
   <div class="hero-content">
-    <div class="hero-badge"> برمجة • صيانة سوفت • حجز جوازات</div>
-    <h1 class="hero-title">عمر الرفاعي</h1>
-    <p class="hero-subtitle">لبرمجة الموبايلات وحجز الجوازات</p>
-    <div class="hero-divider"></div>
-    <p class="hero-slogan">
-      حلول احترافية لجميع مشاكل السوفت وير • أسعار منافسة • خدمة سريعة
+    <h1>عمر الرفاعي</h1>
+    <p class="hero-subtitle">برمجة الموبايلات وحجز الجوازات</p>
+    <div class="hero-tagline">✨ حلول احترافية • أسعار منافسة • خدمة سريعة </div>
+    <p style="font-size:16px; opacity:0.9; margin-top:20px;">
+      جميع خدمات السوفت وير • فك الحسابات • إصلاح IMEI • تنزيل برامج<br>
+      حجز جوازات سفر داخلي وخارجي • تأشيرات الأردن
     </p>
     <div class="hero-buttons">
-      <a href="#order" class="btn btn-primary">📱 اطلب خدمة الآن</a>
-      <a href="#passport" class="btn btn-outline">🛂 حجز جواز سفر</a>
+      <a href="#order" class="btn btn-white"> اطلب خدمة الآن</a>
+      <a href="#passport" class="btn btn-outline"> حجز جواز سفر</a>
     </div>
   </div>
 </section>
 
-<!-- ===== خدمات السوفت وير ===== -->
-<section class="section" id="software">
-  <div class="section-title">
-    <h2>خدمات السوفت وير</h2>
-    <div class="line"></div>
-    <p>حلول شاملة لجميع مشاكل الموبايلات والبرمجة</p>
+<!-- Services -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-title">
+      <h2>خدماتنا الاحترافية</h2>
+      <div class="line"></div>
+      <p>نقدم حلولاً شاملة لجميع مشاكل الموبايلات</p>
+    </div>
+    <div class="services-grid" id="servicesGrid"></div>
   </div>
-  <div class="services-grid" id="servicesGrid"></div>
 </section>
 
-<!-- ===== نموذج الطلب الذكي ===== -->
+<!-- Order Form -->
 <section class="order-section" id="order">
   <div class="order-container">
     <div class="order-card">
       <h2 class="order-title"> اطلب خدمتك الآن</h2>
-      <p style="text-align:center; color:#64748b; margin-bottom:30px;">
-        اختر نوع الجهاز والخدمة، وسنرسل لك السعر فوراً عبر واتساب
-      </p>
+      <p class="order-subtitle">اختر جهازك والخدمة المطلوبة، وسنرسل لك السعر فوراً عبر واتساب</p>
       
       <form onsubmit="sendOrder(event)">
         <div class="form-row">
@@ -457,7 +299,6 @@
               <option value="Other">أخرى</option>
             </select>
           </div>
-          
           <div class="form-group">
             <label>طراز الجهاز *</label>
             <select id="deviceModel" required>
@@ -467,7 +308,7 @@
         </div>
 
         <div class="form-group">
-          <label>نوع الخدمة المطلوبة *</label>
+          <label>الخدمة المطلوبة *</label>
           <select id="serviceType" required>
             <option value="">اختر الخدمة...</option>
             <optgroup label="🔓 فك الحسابات">
@@ -477,19 +318,19 @@
               <option value="Huawei ID">إزالة حساب Huawei ID</option>
               <option value="iCloud">إزالة iCloud (iPhone)</option>
             </optgroup>
-            <optgroup label=" إصلاحات">
+            <optgroup label=" الإصلاحات">
               <option value="IMEI Repair">إصلاح IMEI</option>
               <option value="Baseband">إصلاح Baseband</option>
               <option value="Network">حل مشاكل الشبكة</option>
               <option value="Bootloop">حل مشكلة التعليق على الشعار</option>
               <option value="Dead Phone">إحياء جهاز ميت</option>
             </optgroup>
-            <optgroup label="💾 برمجة">
+            <optgroup label="💾 البرمجة">
               <option value="Flash Firmware">تنزيل نظام كامل (Flash)</option>
               <option value="Update/Downgrade">تحديث أو downgrade</option>
               <option value="Root">Root الجهاز</option>
               <option value="Custom ROM">تثبيت Custom ROM</option>
-              <option value="Arabic">تعرية الجهاز (تفعيل العربية)</option>
+              <option value="Arabic">تفعيل اللغة العربية</option>
             </optgroup>
             <optgroup label="📲 خدمات أخرى">
               <option value="Unlock">فك شبكة (Unlock)</option>
@@ -501,13 +342,13 @@
         </div>
 
         <div class="form-group">
-          <label>ملاحظات إضافية (اختياري)</label>
-          <textarea id="notes" placeholder="اشرح المشكلة بشكل مفصل..."></textarea>
+          <label>ملاحظات إضافية</label>
+          <textarea id="notes" rows="3" placeholder="اشرح المشكلة بشكل مفصل..."></textarea>
         </div>
 
         <div class="form-group">
-          <label>اسمك *</label>
-          <input type="text" id="customerName" required placeholder="أدخل اسمك الكريم">
+          <label>الاسم الكريم *</label>
+          <input type="text" id="customerName" required placeholder="أدخل اسمك">
         </div>
 
         <button type="submit" class="btn-submit">
@@ -518,128 +359,116 @@
   </div>
 </section>
 
-<!-- ===== حجز الجوازات ===== -->
+<!-- Passport Services -->
 <section class="passport-section" id="passport">
-  <div class="section-title">
-    <h2> خدمات حجز الجوازات</h2>
-    <div class="line"></div>
-    <p>نقدم خدمات حجز الجوازات بأسعار منافسة وخدمة سريعة</p>
-  </div>
-  <div class="passport-grid">
-    <div class="passport-card">
-      <div class="passport-icon">🇾</div>
-      <h3>جواز سفر داخلي</h3>
-      <p>حجز مواعيد تجديد وإصدار جوازات السفر السورية داخل البلاد</p>
-      <ul style="list-style:none; text-align:right; margin-bottom:20px; color:#e2e8f0;">
-        <li>✓ حجز مواعيد سريعة</li>
-        <li>✓ متابعة المعاملات</li>
-        <li>✓ أسعار منافسة</li>
-      </ul>
-      <a href="https://wa.me/963994441442?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20جواز%20سفر%20داخلي" target="_blank" class="btn btn-whatsapp" style="width:100%;">احجز الآن</a>
+  <div class="container">
+    <div class="section-title">
+      <h2>خدمات حجز الجوازات</h2>
+      <div class="line"></div>
+      <p>نقدم خدمات حجز الجوازات بأسعار منافسة وخدمة سريعة</p>
     </div>
+    <div class="passport-grid">
+      <div class="passport-card">
+        <div class="passport-icon">🇸🇾</div>
+        <h3>جواز سفر داخلي</h3>
+        <p>حجز مواعيد تجديد وإصدار جوازات السفر السورية</p>
+        <ul class="passport-features">
+          <li>حجز مواعيد سريعة</li>
+          <li>متابعة المعاملات</li>
+          <li>أسعار منافسة</li>
+        </ul>
+        <a href="https://wa.me/963994451442?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20جواز%20سفر%20داخلي" target="_blank" class="btn-passport">احجز الآن</a>
+      </div>
 
-    <div class="passport-card">
-      <div class="passport-icon"></div>
-      <h3>جواز سفر خارجي</h3>
-      <p>حجز مواعيد الجوازات الخارجية والسفارات</p>
-      <ul style="list-style:none; text-align:right; margin-bottom:20px; color:#e2e8f0;">
-        <li>✓ حجز في جميع السفارات</li>
-        <li>✓ استشارات مجانية</li>
-        <li>✓ متابعة كاملة</li>
-      </ul>
-      <a href="https://wa.me/963994441442?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20جواز%20سفر%20خارجي" target="_blank" class="btn btn-whatsapp" style="width:100%;">احجز الآن</a>
-    </div>
+      <div class="passport-card">
+        <div class="passport-icon">🌍</div>
+        <h3>جواز سفر خارجي</h3>
+        <p>حجز مواعيد الجوازات الخارجية والسفارات</p>
+        <ul class="passport-features">
+          <li>حجز في جميع السفارات</li>
+          <li>استشارات مجانية</li>
+          <li>متابعة كاملة</li>
+        </ul>
+        <a href="https://wa.me/963994451442?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20جواز%20سفر%20خارجي" target="_blank" class="btn-passport">احجز الآن</a>
+      </div>
 
-    <div class="passport-card">
-      <div class="passport-icon">🇴</div>
-      <h3>حجز إلى الأردن</h3>
-      <p>خدمات خاصة لحجز الجوازات والتأشيرات إلى الأردن</p>
-      <ul style="list-style:none; text-align:right; margin-bottom:20px; color:#e2e8f0;">
-        <li>✓ تأشيرات سياحية</li>
-        <li>✓ تأشيرات عمل</li>
-        <li>✓ أفضل الأسعار</li>
-      </ul>
-      <a href="https://wa.me/963994441442?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20للأردن" target="_blank" class="btn btn-whatsapp" style="width:100%;">احجز الآن</a>
+      <div class="passport-card">
+        <div class="passport-icon">🇯🇴</div>
+        <h3>حجز إلى الأردن</h3>
+        <p>خدمات خاصة لحجز الجوازات والتأشيرات إلى الأردن</p>
+        <ul class="passport-features">
+          <li>تأشيرات سياحية</li>
+          <li>تأشيرات عمل</li>
+          <li>أفضل الأسعار</li>
+        </ul>
+        <a href="https://wa.me/963994451442?text=مرحباً،%20أريد%20الاستفسار%20عن%20حجز%20للأردن" target="_blank" class="btn-passport">احجز الآن</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== التواصل ===== -->
+<!-- Contact -->
 <section class="section" id="contact">
-  <div class="section-title">
-    <h2>تواصل معنا</h2>
-    <div class="line"></div>
-    <p>نسعد بخدمتكم على مدار الساعة</p>
-  </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-header" style="background:linear-gradient(135deg, #25D366, #128C7E);">
-        <div class="service-icon">💬</div>
+  <div class="container">
+    <div class="section-title">
+      <h2>تواصل معنا</h2>
+      <div class="line"></div>
+      <p>نسعد بخدمتكم على مدار الساعة</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">💬</div>
         <h3>واتساب</h3>
+        <p>تواصل سريع ومباشر</p>
+        <a href="https://wa.me/963994451442" target="_blank" class="btn-contact btn-whatsapp">📱 مراسلة واتساب</a>
       </div>
-      <div class="service-body" style="text-align:center; padding:30px;">
-        <p style="color:#64748b; margin-bottom:20px;">تواصل سريع عبر الواتساب</p>
-        <a href="https://wa.me/963994441442" target="_blank" class="btn btn-whatsapp" style="width:100%;">📱 مراسلة واتساب</a>
-      </div>
-    </div>
 
-    <div class="service-card">
-      <div class="service-header" style="background:linear-gradient(135deg, var(--primary), var(--accent));">
-        <div class="service-icon"></div>
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
         <h3>الاتصال المباشر</h3>
+        <p>للتواصل والاستفسار</p>
+        <div class="phone">0994451442</div>
+        <a href="tel:+963994451442" class="btn-contact">📞 اتصال فوري</a>
       </div>
-      <div class="service-body" style="text-align:center; padding:30px;">
-        <p style="color:#64748b; margin-bottom:15px;">للتواصل والاستفسار</p>
-        <p style="font-size:28px; font-weight:bold; color:var(--primary); direction:ltr; margin-bottom:20px;">0994441442</p>
-        <a href="tel:+963994441442" class="btn btn-primary" style="width:100%;">📞 اتصال فوري</a>
-      </div>
-    </div>
 
-    <div class="service-card">
-      <div class="service-header" style="background:linear-gradient(135deg, var(--secondary), var(--dark));">
-        <div class="service-icon">📍</div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
         <h3>العنوان</h3>
-      </div>
-      <div class="service-body" style="text-align:center; padding:30px;">
-        <p style="color:#64748b; margin-bottom:15px;">زيارتنا في</p>
-        <p style="font-size:18px; color:var(--dark); margin-bottom:20px;">
-          درعا - انخل<br>
-          طريق السوق<br>
-          ستوديو الريم
-        </p>
-        <a href="https://maps.google.com/?q=انخل+درعا+سوريا" target="_blank" class="btn btn-outline" style="width:100%; border-color:var(--dark); color:var(--dark);">🗺️ افتح الخريطة</a>
+        <p>درعا - انخل<br>طريق السوق<br>ستوديو الريم</p>
+        <a href="https://maps.google.com/?q=انخل+درعا+سوريا" target="_blank" class="btn-contact">🗺️ الخريطة</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== الفوتر ===== -->
+<!-- Footer -->
 <footer class="footer">
-  <h3>عمر الرفاعي</h3>
-  <p style="color:var(--primary); font-size:18px; margin-bottom:10px;">لبرمجة الموبايلات وحجز الجوازات</p>
-  
-  <div class="contact-info">
-    <p class="phone">📞 0994441442</p>
-    <p>📱 جميع خدمات السوفت وير والبرمجة</p>
-    <p>🛂 حجز جوازات سفر داخلي وخارجي</p>
-    <p>📍 درعا - انخل - طريق السوق - ستوديو الريم</p>
-  </div>
+  <div class="container">
+    <h3>عمر الرفاعي</h3>
+    <p style="color:var(--primary); font-size:18px; margin-bottom:10px;">برمجة الموبايلات وحجز الجوازات</p>
+    
+    <div class="footer-info">
+      <p class="phone">📞 0994451442</p>
+      <p>📱 جميع خدمات السوفت وير والبرمجة</p>
+      <p>🛂 حجز جوازات سفر داخلي وخارجي</p>
+      <p> درعا - انخل - طريق السوق - ستوديو الريم</p>
+    </div>
 
-  <div class="links">
-    <a href="index.html">🖨️ ستوديو الريم</a>
-    <a href="fadi.html">⚡ المهندس فادي</a>
-    <a href="https://wa.me/963994441442" target="_blank">💬 واتساب</a>
-  </div>
+    <div class="footer-links">
+      <a href="index.html">🖨️ ستوديو الريم</a>
+      <a href="https://wa.me/963994451442" target="_blank"> واتساب</a>
+    </div>
 
-  <p class="copy">© 2026 عمر الرفاعي - جميع الحقوق محفوظة</p>
+    <p class="footer-copy">© 2026 عمر الرفاعي - جميع الحقوق محفوظة</p>
+  </div>
 </footer>
 
-<!-- ===== نافذة تسجيل دخول الأدمن ===== -->
-<div class="login-modal" id="loginModal">
-  <div class="login-box">
-    <button class="login-close" onclick="closeLogin()">✕</button>
+<!-- Login Modal -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeLogin()">✕</button>
     <h2>🔐 دخول الإدارة</h2>
-    <p class="sub">للأشخاص المخوّلين فقط</p>
+    <p class="modal-subtitle">للأشخاص المخوّلين فقط</p>
     <form onsubmit="adminLogin(event)">
       <div class="form-group">
         <label>اسم المستخدم</label>
@@ -649,17 +478,17 @@
         <label>كلمة المرور</label>
         <input type="password" id="loginPass" required placeholder="أدخل كلمة المرور">
       </div>
-      <button type="submit" class="btn-submit-admin">دخول</button>
+      <button type="submit" class="btn-login">دخول</button>
     </form>
   </div>
 </div>
 
-<!-- ===== لوحة التحكم ===== -->
+<!-- Admin Panel -->
 <div class="admin-panel" id="adminPanel">
   <div class="admin-container">
     <div class="admin-header">
-      <h2>🎛️ لوحة التحكم</h2>
-      <button class="close-btn" onclick="closeAdmin()">✕</button>
+      <h2>️ لوحة التحكم</h2>
+      <button class="admin-btn" onclick="closeAdmin()" style="background:rgba(255,255,255,0.2); border:none; color:white; padding:8px 15px; border-radius:8px; cursor:pointer;">✕</button>
     </div>
     <div class="admin-body">
       <div class="admin-tabs">
@@ -667,9 +496,8 @@
         <button class="admin-tab" onclick="switchTab('manage', this)">⚙️ إدارة الخدمات</button>
       </div>
 
-      <!-- إضافة خدمة -->
       <div class="admin-section active" id="addService">
-        <h3 style="color:var(--dark); margin-bottom:20px;">إضافة خدمة جديدة</h3>
+        <h3 style="margin-bottom:20px; color:var(--dark);">إضافة خدمة جديدة</h3>
         <form onsubmit="addService(event)">
           <div class="form-group">
             <label>اسم الخدمة *</label>
@@ -677,34 +505,28 @@
           </div>
           <div class="form-group">
             <label>وصف الخدمة *</label>
-            <textarea id="serviceDesc" required placeholder="اكتب وصفاً تفصيلياً للخدمة..."></textarea>
+            <textarea id="serviceDesc" required placeholder="اكتب وصفاً تفصيلياً..."></textarea>
           </div>
           <div class="form-group">
             <label>القسم *</label>
             <select id="serviceCategory" required>
-              <option value="software">سوفت وير</option>
-              <option value="unlock">فك حسابات</option>
-              <option value="repair">إصلاحات</option>
-              <option value="programming">برمجة</option>
+              <option value="unlock">فك الحسابات</option>
+              <option value="repair">الإصلاحات</option>
+              <option value="programming">البرمجة</option>
+              <option value="other">خدمات أخرى</option>
             </select>
           </div>
-          <div class="form-group">
-            <label>رمز تعبيري (اختياري)</label>
-            <input type="text" id="serviceIcon" placeholder="🔓 🔧 💾" maxlength="2">
-          </div>
-          <button type="submit" class="btn-submit-admin">✨ إضافة الخدمة</button>
+          <button type="submit" class="btn-admin">✨ إضافة الخدمة</button>
         </form>
       </div>
 
-      <!-- إدارة الخدمات -->
       <div class="admin-section" id="manage">
-        <h3 style="color:var(--dark); margin-bottom:20px;">إدارة الخدمات</h3>
-        <p style="color:#64748b; margin-bottom:20px;">يمكنك تعديل أو حذف أي خدمة مباشرة.</p>
-        <div style="padding:20px; background:#f0f9ff; border-radius:10px;">
-          <p><strong>📊 إحصائيات:</strong></p>
-          <p style="margin-top:10px;">• عدد الخدمات: <b id="statsServices">0</b></p>
+        <h3 style="margin-bottom:20px; color:var(--dark);">إدارة الخدمات</h3>
+        <p style="color:#718096; margin-bottom:20px;">يمكنك تعديل أو حذف أي خدمة.</p>
+        <div style="padding:20px; background:#f7fafc; border-radius:10px; margin-bottom:20px;">
+          <p><strong>📊 عدد الخدمات:</strong> <b id="statsServices">0</b></p>
         </div>
-        <button class="btn-submit-admin" style="margin-top:20px; background:#f44336;" onclick="resetAll()">🗑️ حذف جميع الخدمات</button>
+        <button class="btn-admin btn-danger" onclick="resetAll()">🗑️ حذف جميع الخدمات</button>
       </div>
     </div>
   </div>
@@ -713,11 +535,9 @@
 <div class="toast" id="toast"></div>
 
 <script>
-  // ===== بيانات الأدمن =====
   const ADMIN = { username: 'omar', password: 'reem2026', name: 'عمر الرفاعي' };
   let isAdmin = false;
 
-  // ===== موديلات الأجهزة =====
   const deviceModels = {
     'Samsung': ['Galaxy S24 Ultra', 'Galaxy S24', 'Galaxy S23 Ultra', 'Galaxy S23', 'Galaxy S22', 'Galaxy A54', 'Galaxy A53', 'Galaxy A34', 'Galaxy A14', 'Galaxy M34', 'Galaxy Note 20', 'Galaxy Z Fold', 'Galaxy Z Flip'],
     'iPhone': ['iPhone 15 Pro Max', 'iPhone 15 Pro', 'iPhone 15', 'iPhone 14 Pro Max', 'iPhone 14 Pro', 'iPhone 14', 'iPhone 13 Pro Max', 'iPhone 13', 'iPhone 12', 'iPhone 11', 'iPhone X/XS', 'iPhone 8/8 Plus'],
@@ -729,24 +549,21 @@
     'Other': ['LG', 'Sony', 'Nokia', 'Motorola', 'أخرى']
   };
 
-  // ===== البيانات الافتراضية =====
   const defaultServices = [
-    { id: 1, name: 'إزالة حساب Google (FRP)', desc: 'فك قفل حساب Google لجميع أجهزة Android بأحدث الطرق', category: 'unlock', icon: '🔓' },
-    { id: 2, name: 'إصلاح IMEI', desc: 'إصلاح وترميم الـ IMEI لجميع الماركات مع الضمان', category: 'repair', icon: '' },
-    { id: 3, name: 'تنزيل نظام كامل (Flash)', desc: 'تنزيل Firmware أصلي لجميع الأجهزة مع حفظ البيانات', category: 'programming', icon: '' },
-    { id: 4, name: 'إزالة iCloud', desc: 'حلول متعددة لإزالة حساب iCloud من آيفون', category: 'unlock', icon: '' },
-    { id: 5, name: 'حل مشكلة التعليق', desc: 'إصلاح Bootloop والتعليق على الشعار لجميع الأجهزة', category: 'repair', icon: '🔄' },
-    { id: 6, name: 'فك شبكة (Unlock)', desc: 'فك الشبكة لجميع الأجهزة لاستخدامها مع أي شريحة', category: 'unlock', icon: '📡' },
-    { id: 7, name: 'Root الجهاز', desc: 'عمل Root للأندرويد مع تثبيت التطبيقات الخاصة', category: 'programming', icon: '🔑' },
-    { id: 8, name: 'استعادة البيانات', desc: 'استرجاع الصور والفيديوهات والرسائل المحذوفة', category: 'repair', icon: '💾' }
+    { id: 1, name: 'إزالة حساب Google (FRP)', desc: 'فك قفل حساب Google لجميع أجهزة Android بأحدث الطرق', category: 'unlock' },
+    { id: 2, name: 'إصلاح IMEI', desc: 'إصلاح وترميم الـ IMEI لجميع الماركات مع الضمان', category: 'repair' },
+    { id: 3, name: 'تنزيل نظام كامل (Flash)', desc: 'تنزيل Firmware أصلي لجميع الأجهزة مع حفظ البيانات', category: 'programming' },
+    { id: 4, name: 'إزالة iCloud', desc: 'حلول متعددة لإزالة حساب iCloud من آيفون', category: 'unlock' },
+    { id: 5, name: 'حل مشكلة التعليق', desc: 'إصلاح Bootloop والتعليق على الشعار لجميع الأجهزة', category: 'repair' },
+    { id: 6, name: 'فك شبكة (Unlock)', desc: 'فك الشبكة لجميع الأجهزة لاستخدامها مع أي شريحة', category: 'unlock' },
+    { id: 7, name: 'Root الجهاز', desc: 'عمل Root للأندرويد مع تثبيت التطبيقات الخاصة', category: 'programming' },
+    { id: 8, name: 'استعادة البيانات', desc: 'استرجاع الصور والفيديوهات والرسائل المحذوفة', category: 'repair' }
   ];
 
-  // ===== تحديث الموديلات =====
   function updateModels() {
     const type = document.getElementById('deviceType').value;
     const modelSelect = document.getElementById('deviceModel');
     modelSelect.innerHTML = '<option value="">اختر الطراز...</option>';
-    
     if (deviceModels[type]) {
       deviceModels[type].forEach(model => {
         const option = document.createElement('option');
@@ -757,32 +574,20 @@
     }
   }
 
-  // ===== إرسال الطلب =====
   function sendOrder(e) {
     e.preventDefault();
-    
     const deviceType = document.getElementById('deviceType').value;
     const deviceModel = document.getElementById('deviceModel').value;
     const serviceType = document.getElementById('serviceType').value;
     const notes = document.getElementById('notes').value;
     const customerName = document.getElementById('customerName').value;
     
-    const message = `*طلب خدمة جديدة*%0A%0A` +
-      `👤 *الاسم:* ${customerName}%0A` +
-      `📱 *نوع الجهاز:* ${deviceType}%0A` +
-      ` *الطراز:* ${deviceModel}%0A` +
-      `️ *الخدمة:* ${serviceType}%0A` +
-      `${notes ? `📝 *ملاحظات:* ${notes}%0A` : ''}%0A` +
-      `------------------%0A` +
-      `*أرجو تزويدي بالسعر*`;
-    
-    const whatsappUrl = `https://wa.me/963994441442?text=${message}`;
+    const message = `*طلب خدمة جديدة*%0A%0A👤 *الاسم:* ${customerName}%0A📱 *نوع الجهاز:* ${deviceType}%0A *الطراز:* ${deviceModel}%0A⚙️ *الخدمة:* ${serviceType}%0A${notes ? `📝 *ملاحظات:* ${notes}%0A` : ''}%0A------------------%0A*أرجو تزويدي بالسعر*`;
+    const whatsappUrl = `https://wa.me/963994451442?text=${message}`;
     window.open(whatsappUrl, '_blank');
-    
     showToast('✅ تم تحويلك إلى واتساب');
   }
 
-  // ===== تحميل البيانات =====
   function loadData() {
     const services = JSON.parse(localStorage.getItem('omar_services') || 'null') || defaultServices;
     return { services };
@@ -792,7 +597,6 @@
     localStorage.setItem('omar_services', JSON.stringify(services));
   }
 
-  // ===== عرض الخدمات =====
   function renderServices() {
     const { services } = loadData();
     const grid = document.getElementById('servicesGrid');
@@ -802,10 +606,10 @@
     }
     
     const categories = {
-      'unlock': { title: '🔓 فك الحسابات', color: 'linear-gradient(135deg, #f59e0b, #d97706)' },
-      'repair': { title: '🔧 الإصلاحات', color: 'linear-gradient(135deg, #ef4444, #dc2626)' },
-      'programming': { title: '💾 البرمجة', color: 'linear-gradient(135deg, #3b82f6, #2563eb)' },
-      'software': { title: '📱 السوفت وير', color: 'linear-gradient(135deg, #8b5cf6, #7c3aed)' }
+      'unlock': { title: ' فك الحسابات', icon: 'frp' },
+      'repair': { title: '🔧 الإصلاحات', icon: 'imei' },
+      'programming': { title: '💾 البرمجة', icon: 'flash' },
+      'other': { title: ' خدمات أخرى', icon: 'icloud' }
     };
     
     let html = '';
@@ -813,25 +617,20 @@
       const catServices = services.filter(s => s.category === category);
       if (catServices.length > 0) {
         html += `
-          <div class="service-card">
-            <div class="service-header" style="background:${catInfo.color}">
-              <div class="service-icon">${catInfo.title.split(' ')[0]}</div>
-              <h3>${catInfo.title}</h3>
+          <div class="service-box">
+            <div class="service-icon ${catInfo.icon}">
+              <div style="font-size:60px;">${catInfo.title.split(' ')[0]}</div>
             </div>
-            <div class="service-body">
+            <div class="service-content">
+              <h3>${catInfo.title}</h3>
               <ul class="service-list">
                 ${catServices.map(s => `
                   <li>
                     <div style="flex:1;">
-                      <strong>${s.icon || ''} ${s.name}</strong>
-                      <p style="font-size:13px; color:#94a3b8; margin-top:5px;">${s.desc}</p>
+                      <strong>${s.name}</strong>
+                      <p style="font-size:13px; color:#a0aec0; margin-top:5px;">${s.desc}</p>
                     </div>
-                    ${isAdmin ? `
-                      <div style="display:flex; gap:5px;">
-                        <button class="ctrl-btn ctrl-edit" onclick="editService(${s.id})" style="width:30px;height:30px;font-size:12px;">✏️</button>
-                        <button class="ctrl-btn ctrl-delete" onclick="deleteService(${s.id})" style="width:30px;height:30px;font-size:12px;">🗑️</button>
-                      </div>
-                    ` : ''}
+                    ${isAdmin ? `<div style="display:flex; gap:5px;"><button onclick="editService(${s.id})" style="width:28px;height:28px;border:none;border-radius:50%;background:#4299e1;color:white;cursor:pointer;font-size:12px;">✏️</button><button onclick="deleteService(${s.id})" style="width:28px;height:28px;border:none;border-radius:50%;background:#f56565;color:white;cursor:pointer;font-size:12px;">️</button></div>` : ''}
                   </li>
                 `).join('')}
               </ul>
@@ -843,13 +642,8 @@
     grid.innerHTML = html;
   }
 
-  // ===== تسجيل دخول الأدمن =====
   function handleAdminClick() {
-    if (isAdmin) {
-      openAdmin();
-    } else {
-      document.getElementById('loginModal').classList.add('show');
-    }
+    if (isAdmin) { openAdmin(); } else { document.getElementById('loginModal').classList.add('show'); }
   }
 
   function adminLogin(e) {
@@ -860,36 +654,103 @@
       isAdmin = true;
       document.getElementById('loginModal').classList.remove('show');
       document.getElementById('adminBadge').classList.add('show');
-      document.getElementById('adminToggle').innerHTML = '️ لوحة التحكم';
       document.getElementById('loginUser').value = '';
       document.getElementById('loginPass').value = '';
       renderServices();
       updateStats();
       showToast('✅ مرحباً ' + ADMIN.name);
       setTimeout(openAdmin, 500);
-    } else {
-      showToast('❌ بيانات الدخول غير صحيحة');
-    }
+    } else { showToast('❌ بيانات الدخول غير صحيحة'); }
   }
 
-  function closeLogin() {
-    document.getElementById('loginModal').classList.remove('show');
-  }
-
-  function openAdmin() {
-    document.getElementById('adminPanel').classList.add('show');
-    updateStats();
-  }
-
-  function closeAdmin() {
-    document.getElementById('adminPanel').classList.remove('show');
-  }
+  function closeLogin() { document.getElementById('loginModal').classList.remove('show'); }
+  function openAdmin() { document.getElementById('adminPanel').classList.add('show'); updateStats(); }
+  function closeAdmin() { document.getElementById('adminPanel').classList.remove('show'); }
 
   function switchTab(tabId, btn) {
     document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(tabId).classList.add('active');
+  }
+
+  function addService(e) {
+    e.preventDefault();
+    const { services } = loadData();
+    services.push({
+      id: Date.now(),
+      name: document.getElementById('serviceName').value,
+      desc: document.getElementById('serviceDesc').value,
+      category: document.getElementById('serviceCategory').value
+    });
+    saveServices(services);
+    renderServices();
+    updateStats();
+    e.target.reset();
+    showToast('✅ تمت إضافة الخدمة');
+  }
+
+  function editService(id) {
+    const { services } = loadData();
+    const service = services.find(s => s.id === id);
+    if (!service) return;
+    const newName = prompt('اسم الخدمة:', service.name);
+    if (newName === null) return;
+    const newDesc = prompt('الوصف:', service.desc);
+    if (newDesc === null) return;
+    service.name = newName;
+    service.desc = newDesc;
+    saveServices(services);
+    renderServices();
+    showToast('✅ تم التعديل');
+  }
+
+  function deleteService(id) {
+    if (!confirm('هل تريد حذف هذه الخدمة؟')) return;
+    let { services } = loadData();
+    services = services.filter(s => s.id !== id);
+    saveServices(services);
+    renderServices();
+    updateStats();
+    showToast('🗑️ تم الحذف');
+  }
+
+  function updateStats() {
+    const { services } = loadData();
+    document.getElementById('statsServices').textContent = services.length;
+  }
+
+  function resetAll() {
+    if (!confirm('⚠️ سيتم حذف جميع الخدمات!')) return;
+    if (!confirm('تأكيد نهائي!')) return;
+    localStorage.removeItem('omar_services');
+    renderServices();
+    updateStats();
+    showToast('🗑️ تم الحذف');
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  renderServices();
+</script>
+
+</body>
+</html>  document.getElementById(tabId).classList.add('active');
   }
 
   // ===== إضافة خدمة =====
