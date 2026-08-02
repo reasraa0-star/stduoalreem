@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عمر الرفاعي | استوديو تصميم المواقع التجارية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Tajawal:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#10182b; --ink2:#1a2540; --paper:#eef1f7; --paper2:#e2e7f1;
+  --fire:#ff5436; --fire2:#e23c1f; --blue:#2453ff; --gold:#f4b400;
+  --line:rgba(16,24,43,.10); --m:#5a6480; --wa:#25D366;
+  --disp:'Space Grotesk',sans-serif; --head:'Reem Kufi',sans-serif; --body:'Tajawal',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);overflow-x:hidden}
+::selection{background:var(--fire);color:#fff}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* progress */
+#bar{position:fixed;top:0;right:0;height:3px;width:0;background:linear-gradient(90deg,var(--fire),var(--gold));z-index:300}
+
+/* editor top strip */
+.strip{background:var(--ink);color:#cdd5ee;font-family:var(--disp);font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.08)}
+.strip .in{display:flex;align-items:center;gap:12px;padding:8px 0;flex-wrap:wrap}
+.strip .dots{display:flex;gap:6px}
+.strip .dots i{width:11px;height:11px;border-radius:50%}
+.strip .dots i:nth-child(1){background:#ff5f57}.strip .dots i:nth-child(2){background:#febc2e}.strip .dots i:nth-child(3){background:#28c840}
+.strip .path{opacity:.7;direction:ltr}
+.strip .live{margin-right:auto;display:flex;align-items:center;gap:7px;color:#7CFFB2}
+.strip .live .p{width:8px;height:8px;border-radius:50%;background:#7CFFB2;animation:bk 1.3s infinite}
+@keyframes bk{50%{opacity:.2}}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:120;background:rgba(238,241,247,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--head);font-weight:700;font-size:18px}
+.brand .mk{width:38px;height:38px;border-radius:11px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:19px;position:relative;overflow:hidden}
+.brand .mk::after{content:'';position:absolute;right:-5px;bottom:-5px;width:15px;height:15px;background:var(--fire);border-radius:50%}
+.brand small{display:block;font-family:var(--body);font-weight:500;font-size:10.5px;color:var(--m)}
+.nav-links{display:flex;gap:3px;flex-wrap:wrap}
+.nav-links a{padding:8px 13px;border-radius:9px;font-weight:500;font-size:14px;color:var(--m);transition:.25s}
+.nav-links a:hover{background:var(--ink);color:#fff}
+.gbtn{border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-family:var(--body);font-weight:700;font-size:13px;padding:8px 15px;border-radius:10px;cursor:pointer;transition:.25s}
+.gbtn:hover{background:var(--ink);color:#fff}
+.badge{display:none;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:5px 11px;border-radius:30px}
+.badge.on{display:inline-block}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--body);font-weight:700;border:none;cursor:pointer;border-radius:50px;transition:transform .2s,box-shadow .2s,background .2s;font-size:15px;position:relative;overflow:hidden}
+.btn .rp{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);animation:rp .6s linear;pointer-events:none}
+@keyframes rp{to{transform:scale(3.4);opacity:0}}
+.b-fire{background:var(--fire);color:#fff;padding:14px 28px;box-shadow:0 12px 26px -10px rgba(255,84,54,.6)}
+.b-fire:hover{transform:translateY(-3px);background:var(--fire2)}
+.b-ink{background:var(--ink);color:#fff;padding:14px 28px}
+.b-ink:hover{transform:translateY(-3px)}
+.b-wa{background:var(--wa);color:#fff;padding:14px 28px;box-shadow:0 12px 26px -10px rgba(37,211,102,.6)}
+.b-wa:hover{transform:translateY(-3px)}
+.b-line{background:transparent;border:2px solid rgba(255,255,255,.4);color:#fff;padding:13px 26px}
+.b-line:hover{background:#fff;color:var(--ink)}
+
+/* hero — asymmetric, NOT centered trio */
+.hero{padding:54px 0 70px;position:relative}
+.hero-g{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.eyeb{display:inline-flex;align-items:center;gap:8px;font-family:var(--disp);font-weight:500;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--fire);background:rgba(255,84,54,.1);padding:7px 14px;border-radius:30px;margin-bottom:18px}
+.eyeb .d{width:7px;height:7px;border-radius:50%;background:var(--fire);animation:bk 1.3s infinite}
+.hero h1{font-family:var(--head);font-weight:700;line-height:1.06;font-size:clamp(34px,5.6vw,68px);letter-spacing:-.5px}
+.hero h1 .hl{color:var(--fire);position:relative;white-space:nowrap}
+.hero h1 .hl::after{content:'';position:absolute;right:0;bottom:5px;width:100%;height:11px;background:var(--gold);opacity:.4;z-index:-1;transform:skewX(-8deg)}
+.tw{font-family:var(--head);font-size:clamp(18px,2.4vw,26px);color:var(--ink2);margin-top:12px;min-height:1.3em}
+.tw .w{color:var(--blue)}
+.tw .c{display:inline-block;width:3px;height:1em;background:var(--fire);vertical-align:-3px;margin-right:3px;animation:bk 1s infinite}
+.hero p.lead{color:var(--m);font-size:16px;line-height:1.9;max-width:500px;margin:18px 0 26px}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:flex;gap:26px;margin-top:36px;flex-wrap:wrap}
+.stats .s b{font-family:var(--disp);font-weight:700;font-size:30px;display:block;line-height:1}
+.stats .s span{font-size:12.5px;color:var(--m)}
+
+/* live order card in hero (the star) */
+.livecard{background:var(--ink);color:#fff;border-radius:20px;padding:22px;box-shadow:0 36px 70px -30px rgba(16,24,43,.55);position:relative;overflow:hidden}
+.livecard::before{content:'';position:absolute;width:160px;height:160px;border:2px solid rgba(255,84,54,.18);border-radius:50%;top:-70px;left:-50px}
+.livecard .lc-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;position:relative}
+.livecard .lc-h h3{font-family:var(--head);font-weight:700;font-size:18px}
+.livecard .lc-h .tag{font-size:11px;background:rgba(124,255,178,.15);color:#7CFFB2;padding:4px 10px;border-radius:20px;font-family:var(--disp)}
+.livecard .lc-sub{color:#9aa4c4;font-size:12px;margin-bottom:16px;position:relative}
+.lc-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:13px;position:relative}
+.lc-row .k{color:#9aa4c4}.lc-row .v{font-weight:700;text-align:left}
+.lc-row .v.no{color:#6b7596;font-weight:400}
+.lc-meter{margin:14px 0 4px;position:relative}
+.lc-meter .ml{display:flex;justify-content:space-between;font-size:11.5px;color:#9aa4c4;margin-bottom:6px}
+.lc-meter .ml b{color:#fff;font-family:var(--disp)}
+.lc-meter .tr{height:7px;border-radius:7px;background:rgba(255,255,255,.1);overflow:hidden}
+.lc-meter .tr i{display:block;height:100%;width:20%;background:linear-gradient(90deg,#7CFFB2,var(--gold),var(--fire));border-radius:7px;transition:width .5s}
+.livecard .wa{width:100%;justify-content:center;margin-top:14px;position:relative}
+
+/* sections */
+.sec{padding:80px 0}
+.dark{background:var(--ink);color:#fff}
+.sh{max-width:680px;margin-bottom:40px}
+.sh .k{font-family:var(--disp);font-weight:500;letter-spacing:1.5px;text-transform:uppercase;font-size:12px;color:var(--fire);display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.sh .k::before{content:'';width:24px;height:2px;background:var(--fire)}
+.dark .sh .k{color:var(--gold)}.dark .sh .k::before{background:var(--gold)}
+.sh h2{font-family:var(--head);font-weight:700;font-size:clamp(27px,4vw,46px);line-height:1.12}
+.sh h2 em{font-style:normal;color:var(--fire)}.dark .sh h2 em{color:var(--gold)}
+.sh p{color:var(--m);font-size:15.5px;line-height:1.85;margin-top:12px}
+.dark .sh p{color:#9aa4c4}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:168px;gap:14px}
+.cell{position:relative;border-radius:16px;padding:20px;background:#fff;border:1px solid var(--line);cursor:pointer;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.cell:hover{transform:translateY(-6px);box-shadow:0 24px 46px -24px rgba(16,24,43,.4)}
+.cell.big{grid-column:span 2;grid-row:span 2}.cell.wide{grid-column:span 2}.cell.tall{grid-row:span 2}
+.cell .ic{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;font-size:25px;background:var(--paper2);transition:.3s}
+.cell:hover .ic{background:var(--ink);transform:rotate(-5deg) scale(1.05)}
+.cell h3{font-family:var(--head);font-weight:700;font-size:19px;margin-top:6px}
+.cell.big h3{font-size:27px}
+.cell p{color:var(--m);font-size:13px;line-height:1.7;margin-top:5px}
+.cell ul{list-style:none;display:flex;flex-direction:column;gap:5px;margin-top:9px}
+.cell ul li{font-size:12px;color:var(--m);display:flex;gap:7px}
+.cell ul li::before{content:'＋';color:var(--fire);font-weight:700}
+.cell .go{position:absolute;top:16px;left:16px;width:32px;height:32px;border-radius:50%;background:var(--paper2);display:grid;place-items:center;transition:.3s}
+.cell:hover .go{background:var(--fire);color:#fff;transform:rotate(-45deg)}
+.cell .del{position:absolute;bottom:12px;left:12px;display:none;width:28px;height:28px;border-radius:50%;border:none;background:#f44336;color:#fff;cursor:pointer;z-index:4}
+body.adm .cell .del{display:grid;place-items:center}
+
+/* builder */
+.builder{display:grid;grid-template-columns:1.5fr .9fr;gap:28px;align-items:start}
+.field{margin-bottom:26px}
+.field>.lb{display:flex;align-items:center;gap:9px;font-family:var(--head);font-weight:700;font-size:17px;margin-bottom:12px}
+.field>.lb .n{width:24px;height:24px;border-radius:7px;background:var(--fire);color:#fff;display:grid;place-items:center;font-family:var(--disp);font-size:13px}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{border:1.5px solid rgba(16,24,43,.14);background:#fff;border-radius:12px;padding:11px 15px;cursor:pointer;font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px;transition:.2s}
+.chip .e{font-size:17px}
+.chip:hover{border-color:var(--fire);transform:translateY(-2px)}
+.chip.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip .x{display:none;width:17px;height:17px;border-radius:50%;background:#f44336;color:#fff;font-size:10px;align-items:center;justify-content:center}
+body.adm .chip .x{display:flex}
+.chip.sel .x{background:rgba(255,255,255,.25)}
+.qty{display:flex;align-items:center;border:1.5px solid rgba(16,24,43,.14);border-radius:13px;width:max-content;overflow:hidden;background:#fff}
+.qty button{width:48px;height:50px;border:none;background:var(--paper2);font-size:21px;cursor:pointer;font-family:var(--disp);transition:.2s}
+.qty button:hover{background:var(--fire);color:#fff}
+.qty .v{width:68px;text-align:center;font-family:var(--disp);font-weight:700;font-size:21px}
+.qty .u{padding:0 14px;color:var(--m);font-size:12.5px;border-right:1.5px solid rgba(16,24,43,.1)}
+.inp{width:100%;padding:13px 15px;border:1.5px solid rgba(16,24,43,.14);border-radius:12px;font-family:var(--body);font-size:14.5px;background:#fff;transition:.2s}
+.inp:focus{outline:none;border-color:var(--fire);box-shadow:0 0 0 4px rgba(255,84,54,.1)}
+textarea.inp{min-height:90px;resize:vertical}
+
+/* summary sticky */
+.summary{position:sticky;top:90px;background:var(--ink);color:#fff;border-radius:20px;padding:24px;box-shadow:0 28px 56px -28px rgba(16,24,43,.6)}
+.summary h4{font-family:var(--head);font-weight:700;font-size:18px;margin-bottom:5px}
+.summary .sub{color:#9aa4c4;font-size:12px;margin-bottom:16px}
+.sr{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.09);font-size:13px}
+.sr .k{color:#9aa4c4}.sr .v{font-weight:700;text-align:left;max-width:62%}
+.sr .v.no{color:#6b7596;font-weight:400}
+.sr .ex{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end;max-width:64%}
+.sr .ex span{background:rgba(244,180,0,.16);color:var(--gold);font-size:10.5px;padding:3px 8px;border-radius:20px;font-weight:600}
+.mt{margin:16px 0 4px}
+.mt .ml{display:flex;justify-content:space-between;font-size:11.5px;color:#9aa4c4;margin-bottom:6px}
+.mt .ml b{color:#fff;font-family:var(--disp)}
+.mt .tr{height:7px;border-radius:7px;background:rgba(255,255,255,.1);overflow:hidden}
+.mt .tr i{display:block;height:100%;background:linear-gradient(90deg,#7CFFB2,var(--gold),var(--fire));border-radius:7px;transition:width .5s}
+.summary .wa{width:100%;justify-content:center;margin-top:16px}
+.summary .note{font-size:10.5px;color:#9aa4c4;text-align:center;margin-top:11px;line-height:1.6}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s}
+.step{padding:24px 20px;border-radius:16px;background:var(--ink2);border:1px solid rgba(255,255,255,.08);transition:.3s}
+.step:hover{transform:translateY(-6px);border-color:var(--fire)}
+.step .nm{font-family:var(--disp);font-weight:700;font-size:58px;line-height:.8;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.18);counter-increment:s}
+.step .nm::before{content:counter(s,decimal-leading-zero)}
+.step h4{font-family:var(--head);font-weight:700;font-size:17px;margin:12px 0 7px;color:#fff}
+.step p{color:#9aa4c4;font-size:13px;line-height:1.75}
+
+/* features */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feat .f{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;transition:.3s}
+.feat .f:hover{transform:translateY(-5px);box-shadow:0 20px 42px -26px rgba(16,24,43,.4)}
+.feat .f .ic{width:48px;height:48px;border-radius:12px;background:var(--ink);color:var(--gold);display:grid;place-items:center;font-size:22px;margin-bottom:14px}
+.feat .f h4{font-family:var(--head);font-weight:700;font-size:17px;margin-bottom:7px}
+.feat .f p{color:var(--m);font-size:13.5px;line-height:1.75}
+.feat .f.s2{grid-column:span 2;background:var(--ink);color:#fff}
+.feat .f.s2 h4{color:#fff}.feat .f.s2 p{color:#9aa4c4}.feat .f.s2 .ic{background:var(--fire);color:#fff}
+
+/* cta */
+.cta{background:var(--ink);border-radius:24px;padding:48px 36px;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;width:260px;height:260px;border:2px solid rgba(255,84,54,.2);border-radius:50%;top:-110px;left:-70px}
+.cta::after{content:'';position:absolute;width:190px;height:190px;border:2px solid rgba(244,180,0,.18);border-radius:36px;bottom:-80px;right:-50px;transform:rotate(20deg)}
+.cta h2{font-family:var(--head);font-weight:700;font-size:clamp(25px,3.6vw,42px);color:#fff;position:relative}
+.cta p{color:#9aa4c4;margin:12px auto 24px;max-width:540px;line-height:1.85;position:relative}
+.cta .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+
+/* footer */
+footer{background:var(--ink);color:#9aa4c4;padding:48px 0 22px;border-top:1px solid rgba(255,255,255,.08)}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px;margin-bottom:30px}
+.fg h5{color:#fff;font-family:var(--head);font-weight:700;font-size:15px;margin-bottom:12px}
+.fg a{display:block;padding:4px 0;font-size:13.5px;transition:.2s}
+.fg a:hover{color:var(--gold);padding-right:5px}
+.fg .ph{font-family:var(--disp);font-weight:700;font-size:19px;color:var(--gold);direction:ltr;display:inline-block;margin-top:5px}
+.copy{border-top:1px solid rgba(255,255,255,.08);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px}
+
+/* float wa */
+.waf{position:fixed;bottom:20px;left:20px;z-index:200;width:58px;height:58px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;font-size:28px;box-shadow:0 10px 24px rgba(37,211,102,.5);animation:pu 2s infinite;transition:.3s}
+.waf:hover{transform:scale(1.1)}
+@keyframes pu{0%,100%{box-shadow:0 10px 24px rgba(37,211,102,.5)}50%{box-shadow:0 10px 36px rgba(37,211,102,.85)}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.rv.in{opacity:1;transform:none}
+
+/* modals */
+.modal{display:none;position:fixed;inset:0;background:rgba(8,11,26,.82);backdrop-filter:blur(4px);z-index:400;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex}
+.modal .box{background:#fff;border-radius:20px;width:100%;max-width:420px;padding:32px;position:relative}
+.modal .box h3{font-family:var(--head);font-weight:700;font-size:22px;text-align:center;margin-bottom:5px}
+.modal .box .s{text-align:center;color:var(--m);font-size:13px;margin-bottom:22px}
+.modal .box label{display:block;font-weight:700;font-size:13px;margin:0 0 6px}
+.modal .box .inp{margin-bottom:14px}
+.modal .cls{position:absolute;top:13px;left:13px;width:32px;height:32px;border-radius:50%;border:none;background:var(--paper2);cursor:pointer;font-size:15px}
+.panel{display:none;position:fixed;inset:0;background:rgba(8,11,26,.82);backdrop-filter:blur(4px);z-index:400;overflow-y:auto;padding:22px}
+.panel.on{display:block}
+.panel .pb{background:#fff;max-width:840px;margin:0 auto;border-radius:20px;overflow:hidden}
+.panel .ph{background:var(--ink);color:#fff;padding:20px 26px;display:flex;justify-content:space-between;align-items:center}
+.panel .ph h3{font-family:var(--head);font-weight:700;font-size:20px}
+.panel .pbd{padding:26px}
+.tabs{display:flex;gap:7px;border-bottom:1.5px solid var(--paper2);margin-bottom:22px;flex-wrap:wrap}
+.tab{padding:10px 18px;border:none;background:transparent;cursor:pointer;font-family:var(--body);font-weight:700;color:var(--m);border-bottom:3px solid transparent;margin-bottom:-1.5px;transition:.2s}
+.tab.on{color:var(--fire);border-bottom-color:var(--fire)}
+.ts{display:none}.ts.on{display:block}
+.ts h4{font-family:var(--head);font-weight:700;font-size:17px;margin-bottom:14px}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+
+/* toast */
+.toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-26px);background:var(--ink);color:#fff;padding:12px 24px;border-radius:50px;font-weight:700;font-size:13.5px;z-index:500;opacity:0;transition:.4s;box-shadow:0 14px 32px rgba(0,0,0,.3)}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:960px){
+  .hero-g{grid-template-columns:1fr;gap:32px}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .cell.big{grid-column:span 2}
+  .builder{grid-template-columns:1fr}
+  .summary{position:static}
+  .steps{grid-template-columns:1fr 1fr}
+  .feat{grid-template-columns:1fr 1fr}.feat .f.s2{grid-column:span 2}
+  .fg{grid-template-columns:1fr 1fr}
+}
+@media(max-width:580px){
+  .nav-links{display:none}
+  .bento{grid-template-columns:1fr;grid-auto-rows:auto}
+  .cell.big,.cell.wide,.cell.tall{grid-column:span 1;grid-row:span 1}
+  .steps{grid-template-columns:1fr}.feat{grid-template-columns:1fr}.feat .f.s2{grid-column:span 1}
+  .fg{grid-template-columns:1fr}.r2{grid-template-columns:1fr}
+  .sec{padding:58px 0}.cta{padding:36px 20px}
+}
+</style>
+</head>
+<body>
+
+<div id="bar"></div>
+
+<!-- editor strip -->
+<div class="strip"><div class="wrap in">
+  <span class="dots"><i></i><i></i><i></i></span>
+  <span class="path">~/omar-studio/design.studio</span>
+  <span class="live"><span class="p"></span> live • يبني واجهاتٍ تجارية</span>
+</div></div>
+
+<!-- nav -->
+<header class="nav"><div class="wrap nav-in">
+  <a href="#top" class="brand"><span class="mk">ع</span><span>عمر الرفاعي<small>استوديو تصميم المواقع التجارية</small></span></a>
+  <nav class="nav-links">
+    <a href="#types">ماذا نبني</a>
+    <a href="#order">اطلب موقعك</a>
+    <a href="#how">آلية العمل</a>
+    <a href="#contact">تواصل</a>
+  </nav>
+  <div style="display:flex;gap:9px;align-items:center">
+    <span class="badge" id="admB">وضع الإدارة</span>
+    <button class="gbtn" id="admBtn" onclick="admClick()">دخول الإدارة</button>
+  </div>
+</div></header>
+
+<!-- hero -->
+<section class="hero" id="top"><div class="wrap hero-g">
+  <div class="rv">
+    <span class="eyeb"><span class="d"></span> نبني متاجرك الرقمية من الصفر</span>
+    <h1>نحوّل محلّك إلى <span class="hl">واجهةٍ رقمية</span> تبيع على مدار الساعة</h1>
+    <div class="tw">نصمّم مواقع لـ <span class="w" id="tw"></span><span class="c"></span></div>
+    <p class="lead">من الكافيه والكازية إلى السوبرماركت والصالون — موقعٌ احترافيٌّ بخيارات حجزٍ وطلبٍ ذكية، يرسل كلّ زبونٍ طلبه مباشرةً إلى واتسابك. بلا تعقيد، بلا قوالب مكرّرة.</p>
+    <div class="acts">
+      <a href="#order" class="btn b-fire" data-rp>🛒 اطلب موقعك الآن</a>
+      <a href="#types" class="btn b-ink" data-rp>👀 ماذا نبني</a>
+    </div>
+    <div class="stats">
+      <div class="s"><b data-c="120">0</b><span>مشروعٌ منجز</span></div>
+      <div class="s"><b data-c="14">0</b><span>نوع متجر</span></div>
+      <div class="s"><b data-c="98">0</b><span>% رضا العملاء</span></div>
+    </div>
+  </div>
+
+  <!-- live order preview = the star, visible without JS too -->
+  <div class="rv">
+    <div class="livecard">
+      <div class="lc-h"><h3>🧾 طلبيتك الحيّة</h3><span class="tag">معاينة</span></div>
+      <div class="lc-sub">هكذا تصلك الرسالة على واتساب — جرّبها بالأسفل</div>
+      <div class="lc-row"><span class="k">نوع المشروع</span><span class="v no" id="pT">— اختر بالأسفل</span></div>
+      <div class="lc-row"><span class="k">الباقة</span><span class="v no" id="pP">—</span></div>
+      <div class="lc-row"><span class="k">الكمية</span><span class="v" id="pQ">1 فرع</span></div>
+      <div class="lc-row"><span class="k">الإضافات</span><span class="v no" id="pE">بدون</span></div>
+      <div class="lc-meter"><div class="ml"><span>التسليم المتوقّع</span><b id="pD">≈ 3–5 أيام</b></div><div class="tr"><i id="pDb" style="width:25%"></i></div></div>
+      <a href="#order" class="btn b-wa wa" data-rp>⬇️ ابنِ طلبيتك الآن</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- types bento (static HTML — never empty) -->
+<section class="sec" id="types"><div class="wrap">
+  <div class="sh rv"><span class="k">ماذا نبني</span><h2>موقعٌ لكلّ <em>نوع تجارة</em></h2><p>كلّ خليةٍ مشروعٌ نصمّمه بمكوّناته الخاصّة. اضغط أيّ خليةٍ للانتقال إلى طلبيتك وقد اختير نوعُ متجرك تلقائياً.</p></div>
+  <div class="bento rv" id="bento">
+    <div class="cell big" data-type="كافيه / مقهى" onclick="goType(this)"><span class="go">↗</span><div><div class="ic">☕</div><h3>كافيه / مقهى</h3><p>قائمة رقمية، حجز طاولات، وبرنامج ولاء للزبائن.</p></div><ul><li>قائمة مشروبات تفاعلية</li><li>حجز طاولة</li><li>بطاقة ولاء</li></ul></div>
+    <div class="cell" data-type="كازية / محطة وقود" onclick="goType(this)"><span class="go">↗</span><div><div class="ic">⛽</div><h3>كازية / وقود</h3><p>لوحة أسعار حيّة وخريطة فروع.</p></div></div>
+    <div class="cell" data-type="مطعم / قائمة QR" onclick="goType(this)"><span class="go">↗</span><div><div class="ic">🍽️</div><h3>مطعم / QR</h3><p>قائمة تُمسح بالكاميرا وسلّة طلب.</p></div></div>
+    <div class="cell wide" data-type="محلّ تجاري" onclick="goType(this)"><span class="go">↗</span><div><div class="ic">🏬</div><h3>محلّ تجاري</h3><p>كتالوج منتجات بالصور، زرّ طلب واتساب، وبانر عروض متحرّك.</p></div></div>
+    <div class="cell tall" data-type="سوبرماركت / بقالة" onclick="goType(this)"><span class="go">↗</span><div><div class="ic">🛒</div><h3>سوبرماركت</h3><p>أقسام ومنتجات، طلب توصيل، وسعر جملة.</p></div><ul><li>أقسام ومنتجات</li><li>طلب توصيل</li><li>سعر جملة</li></ul></div>
+    <div class="cell" data-type="صيدلية" onclick="goType(this)"><span class="go">↗</span><div><div class="ic">💊</div><h3>صيدلية</h3><p>بحث دواء، طلب وصفة، جدول مناوبات.</p></div></div>
+    <div class="cell" data-type="صالون / تجميل" onclick="goType(this)"><span class="go">↗</span><div><div class="ic">💇</div><h3>صالون / تجميل</h3><p>حجز مواعيد وقائمة خدمات وأسعار.</p></div></div>
+    <div class="cell wide" data-type="معرض سيارات / قطع" onclick="goType(this)"><span class="go">↗</span><div><div class="ic">🚗</div><h3>معرض سيارات / قطع</h3><p>معرض مركبات بفلتر بحث، ونموذج استفسار يرسل واتساب.</p></div></div>
+    <div class="cell" data-type="عيادة / مركز طبي" onclick="goType(this)"><span class="go">↗</span><div><div class="ic">🩺</div><h3>عيادة / طبي</h3><p>حجز كشف، ملفّ طبيب، والخدمات.</p></div></div>
+  </div>
+</div></section>
+
+<!-- order builder -->
+<section class="sec dark" id="order"><div class="wrap">
+  <div class="sh rv"><span class="k">اطلب أو احجز</span><h2>ابنِ طلبيتكَ بخياراتٍ — ونرسلها <em>واتساب</em></h2><p>حدّد نوع المشروع، الباقة، الكمية، والإضافات. الملخّص يتحدّث لحظياً، وزرٌّ واحد يصبّ كلّ اختياراتك في رسالةٍ منسّقةٍ إلى رقمنا.</p></div>
+  <div class="builder">
+    <div class="rv">
+      <div class="field"><div class="lb"><span class="n">1</span> نوع المشروع / المحل</div>
+        <div class="chips" id="cType">
+          <div class="chip" data-v="كافيه / مقهى" onclick="pickType(this)"><span class="e">☕</span>كافيه / مقهى</div>
+          <div class="chip" data-v="كازية / محطة وقود" onclick="pickType(this)"><span class="e">⛽</span>كازية / وقود</div>
+          <div class="chip" data-v="محلّ تجاري" onclick="pickType(this)"><span class="e">🏬</span>محلّ تجاري</div>
+          <div class="chip" data-v="مطعم / قائمة QR" onclick="pickType(this)"><span class="e">🍽️</span>مطعم / QR</div>
+          <div class="chip" data-v="سوبرماركت / بقالة" onclick="pickType(this)"><span class="e">🛒</span>سوبرماركت</div>
+          <div class="chip" data-v="صيدلية" onclick="pickType(this)"><span class="e">💊</span>صيدلية</div>
+          <div class="chip" data-v="صالون / تجميل" onclick="pickType(this)"><span class="e">💇</span>صالون / تجميل</div>
+          <div class="chip" data-v="معرض سيارات / قطع" onclick="pickType(this)"><span class="e">🚗</span>معرض سيارات</div>
+          <div class="chip" data-v="عيادة / مركز طبي" onclick="pickType(this)"><span class="e">🩺</span>عيادة / طبي</div>
+        </div>
+      </div>
+      <div class="field"><div class="lb"><span class="n">2</span> الغرض / الباقة المطلوبة</div>
+        <div class="chips" id="cPkg">
+          <div class="chip" data-v="موقع تعريفي (صفحة واحدة)" data-d="3" data-w="2" onclick="pickPkg(this)"><span class="e">📄</span>تعريفي (صفحة)</div>
+          <div class="chip" data-v="موقع متعدّد الصفحات" data-d="6" data-w="4" onclick="pickPkg(this)"><span class="e">🗂️</span>متعدّد الصفحات</div>
+          <div class="chip" data-v="متجر إلكتروني بسلة" data-d="10" data-w="7" onclick="pickPkg(this)"><span class="e">🛍️</span>متجر بسلة</div>
+          <div class="chip" data-v="نظام حجز مواعيد" data-d="7" data-w="6" onclick="pickPkg(this)"><span class="e">📅</span>حجز مواعيد</div>
+          <div class="chip" data-v="قائمة طعام QR" data-d="4" data-w="3" onclick="pickPkg(this)"><span class="e">📋</span>قائمة QR</div>
+          <div class="chip" data-v="لوحة تحكم / إدارة" data-d="8" data-w="8" onclick="pickPkg(this)"><span class="e">🎚️</span>لوحة إدارة</div>
+        </div>
+      </div>
+      <div class="field"><div class="lb"><span class="n">3</span> الكمية / عدد الفروع أو الصفحات</div>
+        <div class="qty"><button type="button" onclick="stepQ(-1)">−</button><span class="v" id="qV">1</span><button type="button" onclick="stepQ(1)">+</button><span class="u">فرع / صفحة</span></div>
+      </div>
+      <div class="field"><div class="lb"><span class="n">4</span> إضافاتٌ اختيارية</div>
+        <div class="chips" id="cExt">
+          <div class="chip" data-v="تصميم شعار / هوية" data-d="2" onclick="togExt(this)"><span class="e">🎨</span>شعار / هوية</div>
+          <div class="chip" data-v="حجز دومين" data-d="0" onclick="togExt(this)"><span class="e">🌐</span>حجز دومين</div>
+          <div class="chip" data-v="استضافة سنة" data-d="0" onclick="togExt(this)"><span class="e">🗄️</span>استضافة سنة</div>
+          <div class="chip" data-v="ربط واتساب للطلبات" data-d="1" onclick="togExt(this)"><span class="e">🔗</span>ربط واتساب</div>
+          <div class="chip" data-v="SEO أساسي" data-d="1" onclick="togExt(this)"><span class="e">🔍</span>SEO</div>
+          <div class="chip" data-v="تحويل لتطبيق PWA" data-d="2" onclick="togExt(this)"><span class="e">📲</span>تطبيق PWA</div>
+          <div class="chip" data-v="تصوير / تجهيز محتوى" data-d="2" onclick="togExt(this)"><span class="e">📸</span>تصوير محتوى</div>
+          <div class="chip" data-v="دعم / صيانة شهرية" data-d="0" onclick="togExt(this)"><span class="e">🛠️</span>صيانة شهرية</div>
+        </div>
+      </div>
+      <div class="field"><div class="lb"><span class="n">5</span> مدى الاستعجال</div>
+        <div class="chips" id="cUrg">
+          <div class="chip" data-v="عادي" onclick="pickUrg(this)">⏳ عادي</div>
+          <div class="chip" data-v="مستعجل" onclick="pickUrg(this)">⚡ مستعجل</div>
+          <div class="chip" data-v="فوري جداً" onclick="pickUrg(this)">🔥 فوري جداً</div>
+        </div>
+      </div>
+      <div class="field"><div class="lb"><span class="n">6</span> بياناتك</div>
+        <input class="inp" id="cName" placeholder="الاسم الكريم *" style="margin-bottom:11px">
+        <textarea class="inp" id="cNotes" placeholder="ملاحظات إضافية (اختياري): ألوان مفضّلة، فكرة، رابط مشابه..."></textarea>
+      </div>
+    </div>
+
+    <aside class="summary rv">
+      <h4>🧾 ملخّص الطلب</h4>
+      <div class="sub">يتحدّث مع كلّ خيارٍ تختاره</div>
+      <div class="sr"><span class="k">نوع المشروع</span><span class="v no" id="sT">—</span></div>
+      <div class="sr"><span class="k">الباقة</span><span class="v no" id="sP">—</span></div>
+      <div class="sr"><span class="k">الكمية</span><span class="v" id="sQ">1</span></div>
+      <div class="sr"><span class="k">الإضافات</span><span class="v no" id="sE">بدون</span></div>
+      <div class="sr"><span class="k">الاستعجال</span><span class="v no" id="sU">—</span></div>
+      <div class="mt"><div class="ml"><span>التسليم المتوقّع</span><b id="sD">≈ 3–5 أيام</b></div><div class="tr"><i id="sDb" style="width:25%"></i></div></div>
+      <div class="mt"><div class="ml"><span>مستوى التعقيد</span><b id="sC">بسيط</b></div><div class="tr"><i id="sCb" style="width:20%"></i></div></div>
+      <button class="btn b-wa wa" onclick="sendWA()" data-rp>💬 أرسل الطلب عبر واتساب</button>
+      <div class="note">السعر النهائي يُحدَّد بعد مراجعة التفاصيل معك على واتساب — لا نثبّت أسعاراً لأن كلّ مشروعٍ فريد.</div>
+    </aside>
+  </div>
+</div></section>
+
+<!-- how -->
+<section class="sec dark" id="how"><div class="wrap">
+  <div class="sh rv"><span class="k">آلية العمل</span><h2>أربع خطواتٍ من <em>الفكرة</em> إلى الإطلاق</h2></div>
+  <div class="steps rv">
+    <div class="step"><div class="nm"></div><h4>اختيارٌ وطلب</h4><p>تحدّد نوع متجرك وخياراتك، فتصلنا طلبيتك مفصّلةً على واتساب.</p></div>
+    <div class="step"><div class="nm"></div><h4>مراجعةٌ وعرض</h4><p>نراجع التفاصيل معك، نقترح الأنسب، ونتّفق على الخطّة والمدّة.</p></div>
+    <div class="step"><div class="nm"></div><h4>تصميمٌ وبناء</h4><p>نبني واجهتك بمكوّناتها التفاعلية ونربطها بواتسابك مباشرةً.</p></div>
+    <div class="step"><div class="nm"></div><h4>إطلاقٌ ودعم</h4><p>ننشر موقعك، ندرّبك على إدارته، ونبقى بجانبك للدعم.</p></div>
+  </div>
+</div></section>
+
+<!-- features -->
+<section class="sec"><div class="wrap">
+  <div class="sh rv"><span class="k">لماذا نحن</span><h2>ليس مجرّد موقع… بل <em>أداة بيع</em></h2></div>
+  <div class="feat rv">
+    <div class="f s2"><div class="ic">💬</div><h4>كلّ طلبٍ يصلك واتساب</h4><p>لا نماذجَ ميتةً ولا صناديقَ مهجورة. كلّ حجزٍ أو طلبٍ يُرسل فوراً إلى رقمك برسالةٍ منسّقةٍ تحوي كلّ التفاصيل.</p></div>
+    <div class="f"><div class="ic">📱</div><h4>يعمل على كلّ شاشة</h4><p>تصميمٌ متجاوبٌ يبدو أنيقاً على الجوال والتابلت والحاسوب.</p></div>
+    <div class="f"><div class="ic">⚡</div><h4>سرعةٌ وخفّة</h4><p>صفحاتٌ سريعة التحميل لا تُفقدك زبوناً ينتظر.</p></div>
+    <div class="f"><div class="ic">🎨</div><h4>هويةٌ لا قالب</h4><p>نصمّم بألوانك وشعارك، لا بقوالبَ تشبه الجميع.</p></div>
+    <div class="f"><div class="ic">🔧</div><h4>إدارةٌ سهلة</h4><p>تضيف خدماتك بنفسك من لوحةٍ بسيطةٍ حين تشاء.</p></div>
+    <div class="f"><div class="ic">🌐</div><h4>دومينٌ واستضافة</h4><p>نجهّز لك الرابط والاستضافة ليكون موقعك حيّاً.</p></div>
+  </div>
+</div></section>
+
+<!-- cta -->
+<section class="sec" id="contact" style="padding-top:24px"><div class="wrap"><div class="cta rv">
+  <h2>جاهزٌ أن يرى محلّكَ النورَ رقمياً؟</h2>
+  <p>ابدأ بطلبتك الآن، أو راسلنا مباشرةً على واتساب. نحن في درعا — انخل، ونخدم كلّ سوريا.</p>
+  <div class="row">
+    <a href="#order" class="btn b-fire" data-rp>🛒 ابنِ طلبيتك</a>
+    <a href="https://wa.me/963994451442?text=مرحباً،%20أريد%20الاستفسار%20عن%20تصميم%20موقع" target="_blank" class="btn b-wa" data-rp>💬 واتساب مباشر</a>
+    <a href="tel:+963994451442" class="btn b-line">📞 0994451442</a>
+  </div>
+</div></div></section>
+
+<!-- footer -->
+<footer><div class="wrap">
+  <div class="fg">
+    <div>
+      <a href="#top" class="brand" style="color:#fff;margin-bottom:12px"><span class="mk">ع</span><span>عمر الرفاعي<small style="color:#9aa4c4">استوديو تصميم المواقع التجارية</small></span></a>
+      <p style="font-size:13.5px;line-height:1.9;margin-top:8px">نصمّم مواقعَ تجاريةً تفاعليةً تربطك بزبائنك عبر واتساب — من الكافيه إلى الكازية وكلّ ما بينهما.</p>
+    </div>
+    <div><h5>روابط سريعة</h5><a href="#types">ماذا نبني</a><a href="#order">اطلب موقعك</a><a href="#how">آلية العمل</a></div>
+    <div><h5>تواصل وموقعنا</h5><div style="font-size:13.5px;line-height:2">📍 درعا - انخل<br>طريق السوق - ستوديو الريم<br><a href="tel:+963994451442" class="ph">0994451442</a></div></div>
+  </div>
+  <div class="copy"><span>© 2026 عمر الرفاعي — جميع الحقوق محفوظة</span><span style="display:flex;gap:14px"><a href="index.html">🖨️ ستوديو الريم</a><a href="omar1.html">📱 خدمات السوفت وير</a></span></div>
+</div></footer>
+
+<a href="https://wa.me/963994451442" target="_blank" class="waf" title="واتساب">💬</a>
+
+<!-- login -->
+<div class="modal" id="loginM"><div class="box">
+  <button class="cls" onclick="closeLogin()">✕</button>
+  <h3>🔐 دخول الإدارة</h3><p class="s">لإضافة أنواع متاجر وباقات وإضافات</p>
+  <form onsubmit="doLogin(event)">
+    <label>اسم المستخدم</label><input class="inp" id="lu" required placeholder="أدخل اسم المستخدم">
+    <label>كلمة المرور</label><input class="inp" id="lp" type="password" required placeholder="أدخل كلمة المرور">
+    <button class="btn b-fire" style="width:100%;justify-content:center" data-rp>دخول</button>
+  </form>
+</div></div>
+
+<!-- admin -->
+<div class="panel" id="admP"><div class="pb">
+  <div class="ph"><h3>🎛️ لوحة التحكم</h3><button class="gbtn" style="border-color:rgba(255,255,255,.4);color:#fff" onclick="closeAdm()">✕ إغلاق</button></div>
+  <div class="pbd">
+    <div class="tabs">
+      <button class="tab on" onclick="tab('tT',this)">＋ نوع متجر</button>
+      <button class="tab" onclick="tab('tP',this)">＋ باقة</button>
+      <button class="tab" onclick="tab('tE',this)">＋ إضافة</button>
+      <button class="tab" onclick="tab('tM',this)">⚙️ إدارة</button>
+    </div>
+    <div class="ts on" id="tT"><h4>إضافة نوع متجر</h4>
+      <form onsubmit="addType(event)">
+        <div class="r2"><div><label>الاسم *</label><input class="inp" id="aTn" required placeholder="مغسلة سيارات"></div><div><label>رمز *</label><input class="inp" id="aTi" required placeholder="🚿" maxlength="3"></div></div>
+        <label>وصف قصير *</label><input class="inp" id="aTd" required placeholder="سطرٌ يصف المجال">
+        <button class="btn b-fire" style="width:100%;justify-content:center;margin-top:6px" data-rp>✨ أضف</button>
+      </form>
+    </div>
+    <div class="ts" id="tP"><h4>إضافة باقة</h4>
+      <form onsubmit="addPkg(event)">
+        <div class="r2"><div><label>الاسم *</label><input class="inp" id="aPn" required placeholder="اسم الباقة"></div><div><label>رمز</label><input class="inp" id="aPi" placeholder="📦" maxlength="3"></div></div>
+        <div class="r2"><div><label>أيام</label><input class="inp" id="aPd" type="number" min="1" value="4"></div><div><label>تعقيد 1-10</label><input class="inp" id="aPw" type="number" min="1" max="10" value="4"></div></div>
+        <button class="btn b-fire" style="width:100%;justify-content:center;margin-top:6px" data-rp>✨ أضف</button>
+      </form>
+    </div>
+    <div class="ts" id="tE"><h4>إضافة خدمة إضافية</h4>
+      <form onsubmit="addExt(event)">
+        <div class="r2"><div><label>الاسم *</label><input class="inp" id="aEn" required placeholder="اسم الخدمة"></div><div><label>رمز</label><input class="inp" id="aEi" placeholder="✨" maxlength="3"></div></div>
+        <label>أيام إضافية</label><input class="inp" id="aEd" type="number" min="0" value="1">
+        <button class="btn b-fire" style="width:100%;justify-content:center;margin-top:6px" data-rp>✨ أضف</button>
+      </form>
+    </div>
+    <div class="ts" id="tM"><h4>إدارة</h4>
+      <p style="color:var(--m);margin-bottom:14px">احذف أيّ عنصرٍ مخصّصٍ من زرّ ✕ الأحمر الذي يظهر فوق الخيارات وخلايا «ماذا نبني» في وضع الإدارة.</p>
+      <div style="background:var(--paper);border-radius:13px;padding:16px;line-height:2">أنواع مخصّصة: <b id="cTc">0</b><br>باقات مخصّصة: <b id="cPc">0</b><br>إضافات مخصّصة: <b id="cEc">0</b></div>
+      <button class="btn" style="background:#f44336;color:#fff;width:100%;justify-content:center;margin-top:14px" onclick="resetAll()" data-rp>🗑️ حذف كلّ المخصّص</button>
+    </div>
+  </div>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== admin (hidden) ===== */
+var ADMIN={u:'omar',p:'design2026'}, WA='963994451442', isAdm=false;
+var sel={type:null,pkg:null,pkgD:3,pkgW:2,exts:[],urg:null,qty:1};
+
+/* ===== typewriter (cosmetic; page works without it) ===== */
+(function(){var w=['كافيه ☕','كازية وقود ⛽','محلّ تجاري 🏬','مطعم QR 🍽️','صيدلية 💊','صالون 💇'],i=0,c=0,d=false,el=document.getElementById('tw');if(!el)return;(function loop(){var s=w[i];el.textContent=d?s.substring(0,c--):s.substring(0,c++);var sp=d?45:90;if(!d&&c>s.length){d=true;sp=1400}else if(d&&c<0){d=false;c=0;i=(i+1)%w.length;sp=300}setTimeout(loop,sp)})();})();
+
+/* ===== count up ===== */
+document.querySelectorAll('[data-c]').forEach(function(el){var t=+el.getAttribute('data-c'),n=0,o=new IntersectionObserver(function(e){if(e[0].isIntersecting){(function s(){n+=Math.ceil(t/40);if(n>=t)el.textContent=t;else{el.textContent=n;requestAnimationFrame(s)}})();o.disconnect()}});o.observe(el)});
+
+/* ===== reveal ===== */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+/* ===== progress + ripple ===== */
+window.addEventListener('scroll',function(){var h=document.documentElement;document.getElementById('bar').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100+'%'});
+document.addEventListener('click',function(e){var b=e.target.closest('[data-rp]');if(!b)return;var r=document.createElement('span');r.className='rp';var d=Math.max(b.offsetWidth,b.offsetHeight);r.style.width=r.style.height=d+'px';var rc=b.getBoundingClientRect();r.style.left=(e.clientX-rc.left-d/2)+'px';r.style.top=(e.clientY-rc.top-d/2)+'px';b.appendChild(r);setTimeout(function(){r.remove()},600)});
+
+/* ===== selection logic ===== */
+function pickType(el){var on=el.classList.contains('sel');document.querySelectorAll('#cType .chip').forEach(function(c){c.classList.remove('sel')});if(!on){el.classList.add('sel');sel.type=el.getAttribute('data-v')}else sel.type=null;sum()}
+function pickPkg(el){var on=el.classList.contains('sel');document.querySelectorAll('#cPkg .chip').forEach(function(c){c.classList.remove('sel')});if(!on){el.classList.add('sel');sel.pkg=el.getAttribute('data-v');sel.pkgD=+el.getAttribute('data-d')||3;sel.pkgW=+el.getAttribute('data-w')||2}else{sel.pkg=null}sum()}
+function togExt(el){el.classList.toggle('sel');sum()}
+function pickUrg(el){document.querySelectorAll('#cUrg .chip').forEach(function(c){c.classList.remove('sel')});el.classList.add('sel');sel.urg=el.getAttribute('data-v');sum()}
+function stepQ(d){sel.qty=Math.max(1,sel.qty+d);document.getElementById('qV').textContent=sel.qty;sum()}
+function goType(el){var v=el.getAttribute('data-type');document.querySelectorAll('#cType .chip').forEach(function(c){c.classList.toggle('sel',c.getAttribute('data-v')===v)});sel.type=v;sum();document.getElementById('order').scrollIntoView({behavior:'smooth'})}
+
+function setV(id,val){var el=document.getElementById(id);if(val){el.classList.remove('no');el.textContent=val}else{el.classList.add('no');el.textContent='—'}}
+
+function sum(){
+  setV('sT',sel.type); setV('sP',sel.pkg);
+  document.getElementById('sQ').textContent=sel.qty+(sel.qty>1?' فروع':' فرع');
+  var ex=[];document.querySelectorAll('#cExt .chip.sel').forEach(function(c){ex.push(c.getAttribute('data-v'))});
+  var se=document.getElementById('sE');
+  if(ex.length){se.classList.remove('no');se.innerHTML='<span class="ex">'+ex.map(function(x){return '<span>'+x+'</span>'}).join('')+'</span>'}
+  else{se.classList.add('no');se.textContent='بدون'}
+  setV('sU',sel.urg);
+  // days
+  var days=sel.pkg?sel.pkgD:3, w=sel.pkg?sel.pkgW:2;
+  document.querySelectorAll('#cExt .chip.sel').forEach(function(c){days+=(+c.getAttribute('data-d')||0);w+=1.2});
+  days+=Math.max(0,sel.qty-1)*Math.ceil((sel.pkg?sel.pkgD:3)*0.25); w+=sel.qty*0.4;
+  if(sel.urg==='مستعجل')days=Math.max(2,Math.ceil(days*0.7));
+  if(sel.urg==='فوري جداً')days=Math.max(1,Math.ceil(days*0.5));
+  var d2=Math.ceil(days*1.4);
+  document.getElementById('sD').textContent='≈ '+days+'–'+d2+' يوم';
+  var pct=Math.min(100,Math.round(w*9));
+  document.getElementById('sDb').style.width=Math.min(100,Math.max(14,Math.round(days*7)))+'%';
+  document.getElementById('sCb').style.width=Math.max(14,pct)+'%';
+  document.getElementById('sC').textContent=pct<35?'بسيط':pct<70?'متوسط':'متقدّم';
+  // hero mirror
+  var pT=document.getElementById('pT');if(pT){if(sel.type){pT.classList.remove('no');pT.textContent=sel.type}else{pT.classList.add('no');pT.textContent='— اختر بالأسفل'}}
+  var pP=document.getElementById('pP');if(pP){if(sel.pkg){pP.classList.remove('no');pP.textContent=sel.pkg}else{pP.classList.add('no');pP.textContent='—'}}
+  var pQ=document.getElementById('pQ');if(pQ)pQ.textContent=sel.qty+(sel.qty>1?' فروع':' فرع');
+  var pE=document.getElementById('pE');if(pE){if(ex.length){pE.classList.remove('no');pE.textContent=ex.length+' إضافة'}else{pE.classList.add('no');pE.textContent='بدون'}}
+  var pD=document.getElementById('pD');if(pD)pD.textContent='≈ '+days+'–'+d2+' يوم';
+  var pDb=document.getElementById('pDb');if(pDb)pDb.style.width=Math.min(100,Math.max(14,Math.round(days*7)))+'%';
+}
+
+function sendWA(){
+  var name=document.getElementById('cName').value.trim();
+  if(!sel.type){toast('⚠️ اختر نوع المشروع أولاً');return}
+  if(!sel.pkg){toast('⚠️ اختر الباقة');return}
+  if(!name){toast('⚠️ اكتب اسمك الكريم');document.getElementById('cName').focus();return}
+  var ex=[];document.querySelectorAll('#cExt .chip.sel').forEach(function(c){ex.push(c.getAttribute('data-v'))});
+  var notes=document.getElementById('cNotes').value.trim();
+  var days=document.getElementById('sD').textContent;
+  var m='*🛒 طلب تصميم موقع جديد*%0A━━━━━━━━━━━━━━%0A'+
+    '👤 *الاسم:* '+name+'%0A'+
+    '🏪 *نوع المشروع:* '+sel.type+'%0A'+
+    '📦 *الباقة:* '+sel.pkg+'%0A'+
+    '🔢 *الكمية/الفروع:* '+sel.qty+'%0A'+
+    '➕ *الإضافات:* '+(ex.length?ex.join('، '):'بدون')+'%0A'+
+    '⚡ *الاستعجال:* '+(sel.urg||'غير محدد')+'%0A'+
+    (notes?'📝 *ملاحظات:* '+notes+'%0A':'')+
+    '⏳ *التسليم المتوقع:* '+days+'%0A'+
+    '━━━━━━━━━━━━━━%0Aأرجو تزويدي بالسعر والتفاصيل 🙏';
+  window.open('https://wa.me/'+WA+'?text='+m,'_blank');
+  toast('✅ تم فتح واتساب بطلبيتك');
+}
+
+/* ===== admin ===== */
+function admClick(){isAdm?openAdm():document.getElementById('loginM').classList.add('on')}
+function closeLogin(){document.getElementById('loginM').classList.remove('on')}
+function doLogin(e){e.preventDefault();var u=document.getElementById('lu').value,p=document.getElementById('lp').value;
+  if(u===ADMIN.u&&p===ADMIN.p){isAdm=true;document.body.classList.add('adm');document.getElementById('admB').classList.add('on');document.getElementById('admBtn').textContent='لوحة التحكم';closeLogin();document.getElementById('lu').value='';document.getElementById('lp').value='';counts();toast('✅ مرحباً بك في الإدارة');setTimeout(openAdm,400)}
+  else toast('❌ بيانات غير صحيحة')}
+function openAdm(){document.getElementById('admP').classList.add('on');counts()}
+function closeAdm(){document.getElementById('admP').classList.remove('on')}
+function tab(id,btn){document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});document.querySelectorAll('.ts').forEach(function(s){s.classList.remove('on')});btn.classList.add('on');document.getElementById(id).classList.add('on')}
+
+function load(k){try{return JSON.parse(localStorage.getItem(k))||[]}catch(e){return[]}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function counts(){document.getElementById('cTc').textContent=load('odT').length;document.getElementById('cPc').textContent=load('odP').length;document.getElementById('cEc').textContent=load('odE').length}
+
+function addType(e){e.preventDefault();var a=load('odT');var n=document.getElementById('aTn').value,ic=document.getElementById('aTi').value,d=document.getElementById('aTd').value;
+  a.push({n:n,ic:ic,d:d});save('odT',a);
+  var c=document.createElement('div');c.className='cell';c.setAttribute('data-type',n);c.setAttribute('onclick','goType(this)');c.innerHTML='<span class="go">↗</span><button class="del" onclick="event.stopPropagation();rmT(this,\''+n.replace(/'/g,"\\'")+'\')">🗑</button><div><div class="ic">'+ic+'</div><h3>'+n+'</h3><p>'+d+'</p></div>';
+  document.getElementById('bento').appendChild(c);
+  var ch=document.createElement('div');ch.className='chip';ch.setAttribute('data-v',n);ch.setAttribute('onclick','pickType(this)');ch.innerHTML='<span class="e">'+ic+'</span>'+n+'<span class="x" onclick="event.stopPropagation();rmTC(this,\''+n.replace(/'/g,"\\'")+'\')">✕</span>';
+  document.getElementById('cType').appendChild(ch);
+  e.target.reset();counts();toast('✅ تمت الإضافة')}
+function addPkg(e){e.preventDefault();var a=load('odP');var n=document.getElementById('aPn').value,ic=document.getElementById('aPi').value||'📦',d=document.getElementById('aPd').value,w=document.getElementById('aPw').value;
+  a.push({n:n,ic:ic,d:d,w:w});save('odP',a);
+  var ch=document.createElement('div');ch.className='chip';ch.setAttribute('data-v',n);ch.setAttribute('data-d',d);ch.setAttribute('data-w',w);ch.setAttribute('onclick','pickPkg(this)');ch.innerHTML='<span class="e">'+ic+'</span>'+n+'<span class="x" onclick="event.stopPropagation();rmPC(this,\''+n.replace(/'/g,"\\'")+'\')">✕</span>';
+  document.getElementById('cPkg').appendChild(ch);
+  e.target.reset();counts();toast('✅ تمت الإضافة')}
+function addExt(e){e.preventDefault();var a=load('odE');var n=document.getElementById('aEn').value,ic=document.getElementById('aEi').value||'✨',d=document.getElementById('aEd').value;
+  a.push({n:n,ic:ic,d:d});save('odE',a);
+  var ch=document.createElement('div');ch.className='chip';ch.setAttribute('data-v',n);ch.setAttribute('data-d',d);ch.setAttribute('onclick','togExt(this)');ch.innerHTML='<span class="e">'+ic+'</span>'+n+'<span class="x" onclick="event.stopPropagation();rmEC(this,\''+n.replace(/'/g,"\\'")+'\')">✕</span>';
+  document.getElementById('cExt').appendChild(ch);
+  e.target.reset();counts();toast('✅ تمت الإضافة')}
+
+function rmT(btn,n){if(!confirm('حذف؟'))return;btn.closest('.cell').remove();var a=load('odT').filter(function(x){return x.n!==n});save('odT',a);document.querySelectorAll('#cType .chip').forEach(function(c){if(c.getAttribute('data-v')===n)c.remove()});counts();toast('🗑 تم الحذف')}
+function rmTC(btn,n){if(!confirm('حذف؟'))return;btn.closest('.chip').remove();var a=load('odT').filter(function(x){return x.n!==n});save('odT',a);document.querySelectorAll('#bento .cell').forEach(function(c){if(c.getAttribute('data-type')===n)c.remove()});counts();toast('🗑 تم الحذف')}
+function rmPC(btn,n){if(!confirm('حذف؟'))return;btn.closest('.chip').remove();var a=load('odP').filter(function(x){return x.n!==n});save('odP',a);counts();toast('🗑 تم الحذف')}
+function rmEC(btn,n){if(!confirm('حذف؟'))return;btn.closest('.chip').remove();var a=load('odE').filter(function(x){return x.n!==n});save('odE',a);counts();toast('🗑 تم الحذف')}
+function resetAll(){if(!confirm('حذف كلّ المخصّص والعودة للافتراضي؟'))return;localStorage.removeItem('odT');localStorage.removeItem('odP');localStorage.removeItem('odE');location.reload()}
+
+/* load custom items on start */
+(function(){
+  load('odT').forEach(function(x){var c=document.createElement('div');c.className='cell';c.setAttribute('data-type',x.n);c.setAttribute('onclick','goType(this)');c.innerHTML='<span class="go">↗</span><button class="del" onclick="event.stopPropagation();rmT(this,\''+x.n.replace(/'/g,"\\'")+'\')">🗑</button><div><div class="ic">'+x.ic+'</div><h3>'+x.n+'</h3><p>'+x.d+'</p></div>';document.getElementById('bento').appendChild(c);var ch=document.createElement('div');ch.className='chip';ch.setAttribute('data-v',x.n);ch.setAttribute('onclick','pickType(this)');ch.innerHTML='<span class="e">'+x.ic+'</span>'+x.n+'<span class="x" onclick="event.stopPropagation();rmTC(this,\''+x.n.replace(/'/g,"\\'")+'\')">✕</span>';document.getElementById('cType').appendChild(ch)});
+  load('odP').forEach(function(x){var ch=document.createElement('div');ch.className='chip';ch.setAttribute('data-v',x.n);ch.setAttribute('data-d',x.d);ch.setAttribute('data-w',x.w);ch.setAttribute('onclick','pickPkg(this)');ch.innerHTML='<span class="e">'+x.ic+'</span>'+x.n+'<span class="x" onclick="event.stopPropagation();rmPC(this,\''+x.n.replace(/'/g,"\\'")+'\')">✕</span>';document.getElementById('cPkg').appendChild(ch)});
+  load('odE').forEach(function(x){var ch=document.createElement('div');ch.className='chip';ch.setAttribute('data-v',x.n);ch.setAttribute('data-d',x.d);ch.setAttribute('onclick','togExt(this)');ch.innerHTML='<span class="e">'+x.ic+'</span>'+x.n+'<span class="x" onclick="event.stopPropagation();rmEC(this,\''+x.n.replace(/'/g,"\\'")+'\')">✕</span>';document.getElementById('cExt').appendChild(ch)});
+})();
+
+var _t;function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(_t);_t=setTimeout(function(){t.classList.remove('on')},2600)}
+sum();
+</script>
+</body>
+</html>
