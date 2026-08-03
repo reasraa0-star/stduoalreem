@@ -1,14 +1,14 @@
 {
-  "name": "دفتر الحسابات — نظام المحاسبة",
+  "name": "نظام عمر للمحاسبة",
   "short_name": "المحاسبة",
-  "start_url": "./acc.html",
+  "start_url": "./omarsys.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0b2420",
-  "theme_color": "#0e8a5f",
+  "background_color": "#0e1c3d",
+  "theme_color": "#0e1c3d",
   "dir": "rtl",
   "lang": "ar",
   "icons": [
-    { "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230e8a5f'/><rect x='25' y='18' width='50' height='16' rx='4' fill='%23fff'/><rect x='25' y='44' width='12' height='12' rx='3' fill='%23fff'/><rect x='44' y='44' width='12' height='12' rx='3' fill='%23fff'/><rect x='63' y='44' width='12' height='12' rx='3' fill='%23fff'/><rect x='25' y='64' width='12' height='12' rx='3' fill='%23fff'/><rect x='44' y='64' width='12' height='12' rx='3' fill='%23fff'/><rect x='63' y='64' width='12' height='12' rx='3' fill='%23fbbf24'/></svg>", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    { "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230e1c3d'/><circle cx='32' cy='32' r='20' fill='none' stroke='%23d9a83f' stroke-width='4' stroke-dasharray='94 32' stroke-linecap='round' transform='rotate(-50 32 32)'/><rect x='24' y='31' width='5' height='10' rx='1.5' fill='%23d9a83f'/><rect x='30.5' y='26' width='5' height='15' rx='1.5' fill='%23d9a83f'/><rect x='37' y='21' width='5' height='20' rx='1.5' fill='%23d9a83f'/></svg>", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]
 }
